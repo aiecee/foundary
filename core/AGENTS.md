@@ -1,6 +1,4 @@
 # Purpose
-Define a portable global `~/.codex/AGENTS.md` baseline for Codex behavior across repositories.
-
 This file sets default operating rules only. Repo-specific instructions belong in repo-level `AGENTS.md` files.
 
 # Default Working Behaviour
