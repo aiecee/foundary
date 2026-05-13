@@ -1,19 +1,31 @@
 # [Feature or change name]
 
 **Date:** YYYY-MM-DD
-**Implementation plan:** [TBD until planify creates `docs/plans/YYYY-MM-DD-<topic>.md`]
+**Implementation plan:** [TBD until plan creates `docs/plans/YYYY-MM-DD-<topic>.md`]
+
+## Goal
+
+[1–3 sentences: what we're building and why.]
 
 ## Summary
 
-[1–3 sentences: what we're building and why.]
+[Optional additional context or framing for the goal.]
 
 ## Success criteria
 
 [List the concrete outcomes this design must achieve. These should be specific enough for planning and verification to check against.]
 
+## Constraints
+
+[Explicit implementation constraints that downstream planning must preserve.]
+
 ## Non-functional requirements (optional)
 
 [List constraints such as performance, security, reliability, observability, accessibility, compliance, or migration requirements when they matter for this design.]
+
+## Repository context
+
+[Grounding notes from the current repo: relevant files, existing patterns, modules, and constraints discovered during exploration.]
 
 ## Architecture
 

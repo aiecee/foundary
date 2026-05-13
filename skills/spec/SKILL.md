@@ -15,7 +15,7 @@ Always ensure the work reaches these outcomes:
 - clarify goals, constraints, success criteria, and important non-functional requirements
 - compare 2-3 plausible approaches and their trade-offs
 - provide a clear recommendation
-- produce a design doc useful for downstream planning
+- produce a design doc useful for downstream planning and directly consumable by `plan` without section-name inference
 
 ## Workflow guidance
 
@@ -43,6 +43,15 @@ Always ensure the work reaches these outcomes:
 - Default to a full-pass design review.
 - Use staged or section-by-section review only when the work is highly uncertain, contentious, or when the user asks for iterative approval.
 - Scale each section by complexity; keep simple sections short and expand complex sections as needed.
+- Use canonical section names so downstream `plan` can parse without mapping heuristics:
+  - `Goal`
+  - `Success criteria`
+  - `Constraints`
+  - `Architecture`
+  - `Testing`
+  - `Out of scope`
+  - `Repository context`
+  - `Implementation plan`
 
 ### 5. Write design doc
 
@@ -52,11 +61,12 @@ Always ensure the work reaches these outcomes:
   - include sections that add value
   - omit sections that are irrelevant
   - expand sections that need depth
-- Fill `Implementation plan` with `TBD until planify creates it` unless a known plan path already exists.
+- Keep the canonical sections required by downstream `plan` even when they are brief.
+- Fill `Implementation plan` with `TBD until plan creates docs/plans/YYYY-MM-DD-<topic>.md` unless a known plan path already exists.
 - Do not write the doc to disk until the design is settled.
 
 ## Scope boundaries
 
 - This skill is for design-spec development.
-- Do not merge design work with implementation planning (`planify`) or implementation/verification behavior (`buildify` / verification workflows).
+- Do not merge design work with implementation planning (`plan`) or implementation/verification behavior (`buildify` / verification workflows).
 - Do not skip trade-off thinking, even when the task is small.
