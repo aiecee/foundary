@@ -3,6 +3,143 @@
   "version": "0.1.0",
   "description": "Foundary Codex plugin wiring shared skills and global integration assets.",
   "skills": "../../skills",
+  "workflow": {
+    "stages": [
+      {
+        "name": "spec",
+        "order": 1,
+        "description": "Produce a decision-ready design spec grounded in repository context."
+      },
+      {
+        "name": "plan",
+        "order": 2,
+        "description": "Convert an approved spec into strict, execution-ready implementation tasks."
+      },
+      {
+        "name": "build",
+        "order": 3,
+        "description": "Execute plan tasks sequentially with Red/Green/Refactor discipline."
+      },
+      {
+        "name": "commit",
+        "order": 4,
+        "description": "Create scoped Conventional Commits for coherent implementation units."
+      }
+    ],
+    "intendedExecutionOrder": [
+      "spec",
+      "plan",
+      "build",
+      "commit"
+    ]
+  },
+  "skillsMetadata": {
+    "spec": {
+      "aliases": [
+        "specify"
+      ],
+      "purpose": "Shape ideas into design specs with explicit scope, constraints, and architecture.",
+      "requiredInputs": [
+        "feature/problem statement",
+        "repository context"
+      ],
+      "expectedOutputs": [
+        "design document with canonical sections",
+        "implementation plan placeholder"
+      ],
+      "executionGuarantees": [
+        "repository-grounded design",
+        "explicit assumptions",
+        "trade-off analysis"
+      ]
+    },
+    "plan": {
+      "aliases": [
+        "planify"
+      ],
+      "purpose": "Produce deterministic execution plans directly consumable by build.",
+      "requiredInputs": [
+        "approved spec",
+        "repository context",
+        "available verification commands"
+      ],
+      "expectedOutputs": [
+        "ordered behavior-first tasks",
+        "Red/Green/Refactor task contracts",
+        "coverage traceability mapping"
+      ],
+      "executionGuarantees": [
+        "strict scope boundaries",
+        "explicit verification per task",
+        "success-criteria coverage"
+      ]
+    },
+    "build": {
+      "aliases": [
+        "buildify"
+      ],
+      "purpose": "Implement plan tasks sequentially with strict execution discipline.",
+      "requiredInputs": [
+        "execution-ready plan",
+        "repository context",
+        "project test/lint/build commands"
+      ],
+      "expectedOutputs": [
+        "completed task implementation",
+        "verification summaries",
+        "feedback checkpoints"
+      ],
+      "executionGuarantees": [
+        "Red before Green",
+        "no opportunistic scope expansion",
+        "task-order preservation"
+      ]
+    },
+    "commit": {
+      "aliases": [
+        "commitify"
+      ],
+      "purpose": "Turn coherent diffs into properly-scoped Conventional Commits.",
+      "requiredInputs": [
+        "staged or selected diff",
+        "commit type selection"
+      ],
+      "expectedOutputs": [
+        "conventional commit message",
+        "scoped commit for intended change set"
+      ],
+      "executionGuarantees": [
+        "type discipline (feat/fix/chore)",
+        "no unrelated changes committed",
+        "breaking changes marked in header"
+      ]
+    }
+  },
+  "compatibility": {
+    "supportedCodexPluginVersions": ">=1.0.0",
+    "requiredCapabilities": [
+      "filesystem-read",
+      "filesystem-write",
+      "git-cli"
+    ],
+    "filesystemRequirements": [
+      "read/write access to repository",
+      "read/write access to ~/.codex for install scripts"
+    ],
+    "gitRequirements": [
+      "git available in PATH",
+      "repository initialized with .git"
+    ]
+  },
+  "examples": {
+    "commonUsage": [
+      "Use spec to produce docs/plans/YYYY-MM-DD-topic-design.md",
+      "Use plan to produce docs/plans/YYYY-MM-DD-topic.md",
+      "Use build to execute tasks in the plan file",
+      "Use commit to create scoped Conventional Commits"
+    ],
+    "typicalInvocationFlow": "spec -> plan -> build -> commit"
+  },
   "interface": {
     "displayName": "Foundary",
     "shortDescription": "Shared Foundary skills for Codex",

@@ -68,5 +68,5 @@ Always ensure the work reaches these outcomes:
 ## Scope boundaries
 
 - This skill is for design-spec development.
-- Do not merge design work with implementation planning (`plan`) or implementation/verification behavior (`buildify` / verification workflows).
+- Do not merge design work with implementation planning (`plan`) or implementation/verification behavior (`build` / build workflows).
 - Do not skip trade-off thinking, even when the task is small.

@@ -8,7 +8,7 @@ compatibility: 'Requires: git, filesystem access, ability to run project test/li
 
 Turns an approved Foundary spec into a deterministic, scoped, execution-ready implementation plan that downstream `build` can follow linearly with minimal inference.
 
-Preserved strengths from `planify`:
+Preserved strengths from earlier planning iterations:
 - repository grounding
 - behaviour-first vertical slicing
 - Red / Green / Refactor
@@ -122,4 +122,4 @@ Strongly discourage:
 - architecture rewrites
 - "while I'm here" changes
 
-Do not use `planify` wording in generated output. Use `plan`.
+Use canonical `plan` terminology in generated output.
