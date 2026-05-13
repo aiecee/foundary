@@ -3,18 +3,17 @@ set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
-PLUGIN_SRC="$REPO_ROOT/plugins/foundary"
+PLUGIN_SRC="$REPO_ROOT/integrations/codex/plugins/foundary"
 PLUGIN_DST="$CODEX_HOME/plugins/foundary"
 AGENTS_SRC="$REPO_ROOT/integrations/codex/AGENTS.md"
 AGENTS_DST="$CODEX_HOME/AGENTS.md"
+PLUGIN_META="$PLUGIN_SRC/.codex-plugin/plugin.json"
 
 is_symlink_to() {
   local path="$1"
   local target="$2"
   [[ -L "$path" ]] || return 1
-  local current
-  current="$(readlink "$path")"
-  [[ "$current" == "$target" ]]
+  [[ "$(readlink "$path")" == "$target" ]]
 }
 
 safe_link() {
@@ -29,34 +28,27 @@ safe_link() {
     fi
 
     if [[ -L "$dst" ]]; then
-      echo "WARN: Re-linking $label from existing symlink: $dst"
       ln -sfn "$src" "$dst"
-      echo "OK: Linked $label: $dst -> $src"
+      echo "OK: Re-linked $label: $dst -> $src"
       return 0
     fi
 
-    echo "WARN: $label target exists and is not Foundary-managed: $dst"
-    echo "WARN: Skipping to avoid overwriting user-owned file. Remove or back up manually, then rerun."
+    echo "WARN: $label exists and is not Foundary-managed: $dst"
+    echo "WARN: Skipping to avoid overwriting user-owned file"
     return 0
   fi
 
-  ln -sfn "$src" "$dst"
+  ln -s "$src" "$dst"
   echo "OK: Linked $label: $dst -> $src"
 }
 
+if [[ ! -f "$PLUGIN_META" ]]; then
+  echo "ERROR: Plugin metadata missing: $PLUGIN_META"
+  exit 1
+fi
+
 mkdir -p "$CODEX_HOME" "$CODEX_HOME/plugins"
-
-if [[ ! -d "$PLUGIN_SRC" ]]; then
-  echo "ERROR: Plugin source missing: $PLUGIN_SRC"
-  exit 1
-fi
-
-if [[ ! -f "$AGENTS_SRC" ]]; then
-  echo "ERROR: AGENTS source missing: $AGENTS_SRC"
-  exit 1
-fi
-
-safe_link "$PLUGIN_SRC" "$PLUGIN_DST" "plugin"
 safe_link "$AGENTS_SRC" "$AGENTS_DST" "AGENTS.md"
+safe_link "$PLUGIN_SRC" "$PLUGIN_DST" "plugin"
 
-echo "Install completed."
+echo "Codex install completed."

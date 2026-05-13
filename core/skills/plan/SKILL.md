@@ -81,8 +81,8 @@ If any required section is missing:
    - Allow only the minimal enabling infrastructure needed for the next behaviour slice.
 
 4. **Build execution contract using templates.**
-   - Read `assets/plan-header-template.md` and fill all sections.
-   - Read `assets/task-structure-template.md` for every task.
+   - Read `assets/implementation-plan-template.md` as the canonical plan interface.
+   - Use `assets/task-structure-template.md` for per-task Red/Green/Refactor detail where needed.
    - Every task must explicitly define:
      - pre-read files
      - files to create/modify/delete
