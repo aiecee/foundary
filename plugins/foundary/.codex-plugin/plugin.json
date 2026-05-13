@@ -1,0 +1,11 @@
+{
+  "name": "foundary",
+  "version": "0.1.0",
+  "description": "Foundary Codex plugin wiring shared skills and global integration assets.",
+  "skills": "../../skills",
+  "interface": {
+    "displayName": "Foundary",
+    "shortDescription": "Shared Foundary skills for Codex",
+    "category": "Developer Tools"
+  }
+}
