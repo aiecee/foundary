@@ -55,8 +55,3 @@ Run that command from the repository root. Codex reads `.agents/plugins/marketpl
 
 - `foundary-workflow` guides design specs, implementation plans, and plan execution.
 - `foundary-git` helps inspect diffs and create scoped Conventional Commits.
-
-## Notes
-
-- The `commit` skill name is intentionally unchanged inside `foundary-git`.
-- No install scripts or non-Codex integrations are included.
