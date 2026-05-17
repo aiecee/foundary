@@ -1,6 +1,6 @@
 # Conventional Commits Reference
 
-This asset is a concise local reference for Conventional Commits 1.0.0. It is intentionally shorter than the full specification and is meant to support `commitify` when drafting messages.
+This asset is a concise local reference for Conventional Commits 1.0.0. It is intentionally shorter than the full specification and is meant to support `commit` when drafting messages.
 
 Source: [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/#specification)
 
@@ -23,7 +23,7 @@ Use this shape:
 
 ## Default Types For This Skill
 
-`commitify` supports these default types:
+`commit` supports these default types:
 
 - `feat`: new functionality or an improvement to existing functionality.
 - `fix`: a bug fix or regression fix.
