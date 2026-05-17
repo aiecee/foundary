@@ -1,0 +1,14 @@
+{
+  "name": "foundary-git",
+  "version": "0.1.0",
+  "description": "Foundary Codex git skill for scoped Conventional Commits.",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Foundary Git",
+    "shortDescription": "Conventional Commit support for Codex.",
+    "longDescription": "A Foundary git workflow skill for inspecting diffs, choosing an appropriate commit type, and creating scoped Conventional Commits.",
+    "developerName": "Foundary",
+    "category": "Coding",
+    "capabilities": ["Read", "Write"]
+  }
+}

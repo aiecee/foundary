@@ -1,5 +1,5 @@
 ---
-name: commitify
+name: commit
 description: Drafts Conventional Commit messages from staged or branch changes by first classifying the change as feat, fix, or chore, then producing a concise subject and optional body and committing the selected changes. Use when the user asks for help writing a commit message, naming a commit, summarizing git diff changes into a Conventional Commit, or creating a git commit.
 compatibility: 'Requires: git, filesystem access, and ability to inspect staged or branch changes.'
 ---

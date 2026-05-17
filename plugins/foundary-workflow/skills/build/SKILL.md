@@ -38,7 +38,7 @@ Treat the plan as the source of truth for task order and scope. Do not redesign 
 Before plan validation or implementation, inspect enough repository context to ground execution:
 
 - `README.md` or `README.*`
-- `AGENTS.md`, `CLAUDE.md`, or equivalent operator guidance
+- `AGENTS.md` or equivalent operator guidance
 - `docs/`
 - `docs/plans/`
 - project manifests (for available scripts/commands)

@@ -58,7 +58,7 @@ If any required section is missing:
 1. **Ground in repository context before planning.**
    - Inspect:
      - `README.md` or `README.*`
-     - `AGENT.md`, `AGENTS.md`, `CLAUDE.md`, or similar operator guidance
+     - `AGENT.md`, `AGENTS.md`, or similar operator guidance
      - `docs/`
      - `docs/plans/`
      - project manifests (`package.json`, `pyproject.toml`, or equivalent)
