@@ -1,12 +1,12 @@
 {
   "name": "foundary-workflow",
   "version": "0.1.0",
-  "description": "Foundary Codex workflow skills for spec, plan, and build stages.",
+  "description": "Foundary Codex workflow skills for investigation, specification, planning, and build execution.",
   "skills": "./skills/",
   "interface": {
     "displayName": "Foundary Workflow",
-    "shortDescription": "Spec, plan, and build workflows for Codex.",
-    "longDescription": "Guided Foundary workflow skills for shaping specs, planning implementation, and executing build tasks in Codex.",
+    "shortDescription": "Investigate, spec, plan, and build workflows for Codex.",
+    "longDescription": "Guided Foundary workflow skills for repository investigation, shaping specs, planning implementation, and executing build tasks in Codex.",
     "developerName": "Foundary",
     "category": "Coding",
     "capabilities": ["Read", "Write"]
