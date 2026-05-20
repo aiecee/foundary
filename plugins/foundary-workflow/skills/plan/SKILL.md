@@ -20,6 +20,7 @@ Strengthened requirements:
 - explicit execution contract per task
 - low-cost model reliability
 - traceability from spec -> tasks -> tests -> verification
+- test quality evidence for every Red-light scenario
 - explicit uncertainty labeling
 
 ## Input contract
@@ -81,12 +82,14 @@ If any required section is missing:
    - Allow only the minimal enabling infrastructure needed for the next behaviour slice.
 
 4. **Build execution contract using templates.**
+   - Read `assets/test-quality-rubric.md` before creating Red-light scenarios.
    - Read `assets/implementation-plan-template.md` as the canonical plan interface.
    - Use `assets/task-structure-template.md` for per-task Red/Green/Refactor detail where needed.
    - Every task must explicitly define:
      - pre-read files
      - files to create/modify/delete
      - Red-light test level, command, scenarios, expected failure
+     - Red-light test quality evidence: Requirement protected, Failure mode caught, Test category, Test level rationale, Mocks used, Runtime contract rationale when asserting shape
      - Green-light exact implementation boundaries
      - Refactor limits
      - task verification command
@@ -97,6 +100,7 @@ If any required section is missing:
 5. **Run mandatory coverage traceability check before output.**
    - Map each success criterion to at least one task.
    - Map each success criterion to at least one Red-light scenario.
+   - Confirm each Red-light scenario satisfies `assets/test-quality-rubric.md`.
    - Flag uncovered criteria and resolve gaps before finalizing.
    - Include the coverage traceability table in the plan header.
 

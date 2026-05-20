@@ -136,6 +136,10 @@ Assess whether the changed behavior has appropriate validation.
 Look for:
 
 - new or updated tests for behavior changes
+- low-value tests that exist but do not protect meaningful behavior
+- mock-heavy tests without a clear external-boundary reason
+- shape-only tests that are not tied to a runtime/public contract
+- implementation-detail assertions or tests without a realistic failure mode
 - updated fixtures or snapshots
 - typecheck or lint implications
 - migration or compatibility checks
@@ -151,6 +155,8 @@ If tests are absent, distinguish between:
 Do not claim tests passed unless evidence is available.
 
 Do not treat missing tests as blocking by default. Make missing validation blocking only when the change risk, behavior surface, or repo conventions justify it.
+
+Do not treat the mere presence of tests as sufficient validation. Low-value tests should be flagged when they are ornamental, mock-heavy without justification, shape-only without a runtime/public contract, or focused on implementation-detail assertions.
 
 ### 7. Check commit readiness
 

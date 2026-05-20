@@ -11,6 +11,12 @@
 - Scope boundaries:
 - Pre-read files:
 - Red:
+  - Requirement protected:
+  - Failure mode caught:
+  - Test category:
+  - Test level rationale:
+  - Mocks used:
+  - Runtime contract rationale:
 - Green:
 - Refactor:
 - Verification command(s):
@@ -20,3 +26,4 @@
 ## Traceability
 - Success criterion -> task(s):
 - Success criterion -> verification scenario(s):
+- Test quality evidence: Requirement protected, Failure mode caught, Test category, Test level rationale, Mocks used, Runtime contract rationale

@@ -60,7 +60,21 @@ Files the build agent must inspect before editing:
 
 ### Red Light
 
-**Test Level:** unit | integration | e2e
+Apply `assets/test-quality-rubric.md` before filling this section.
+
+**Test Level:** unit | integration | e2e | manual verification
+
+**Requirement protected:** [Business requirement, regression, risk, or runtime contract this test protects]
+
+**Failure mode caught:** [Realistic broken behaviour this test would fail on]
+
+**Test category:** business requirement | regression / known bug | risk / edge case | runtime contract
+
+**Test level rationale:** [Why this level is the smallest meaningful verification level]
+
+**Mocks used:** none | [mock name and reason each mock is necessary]
+
+**Runtime contract rationale:** none | [runtime/public boundary and consumer when asserting data shape]
 
 **Test command before implementation:**
 

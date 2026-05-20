@@ -85,6 +85,8 @@ Red light requirements:
 - Write only the failing tests for the current task behavior.
 - Run the tests and confirm they fail.
 - Failure must be behavior-meaningful, not setup failure.
+- The test must preserve the planned failure mode and test-quality evidence from the current task.
+- Stop and ask whether to update the plan or spec if the planned or generated test is ornamental, mock-heavy without external-boundary rationale, shape-only without runtime/public contract rationale, focused on implementation-detail assertions, or missing a real failure mode.
 - Setup failures (compile/import/config/mock issues) must be fixed before proceeding.
 - If Red-first is impractical for a behavior, stop and ask how to proceed (mock/stub, documented exception, or manual verification).
 
@@ -157,6 +159,7 @@ Then stop.
 - implementation would require guessing
 - current task is not execution-ready
 - verification fails repeatedly without clear cause
+- current Red test would create low-value tests instead of protecting meaningful behaviour
 - repo reality conflicts materially with the plan
 - scope would need to expand beyond the current task
 

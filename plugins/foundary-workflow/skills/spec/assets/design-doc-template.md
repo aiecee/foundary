@@ -45,7 +45,7 @@
 
 ## Testing
 
-[What to test (unit, integration, e2e), key scenarios, test data or mocks if relevant.]
+[Testing intent for downstream planning. Include only what is relevant: business rules or user outcomes to protect, known bugs or regressions to avoid reintroducing, high-risk edge cases, runtime/public contracts, useful test data, and mocks or fakes that may be appropriate. Also note anything not worth testing because type checking or implementation detail already covers it.]
 
 ## Out of scope
 

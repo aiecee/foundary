@@ -43,6 +43,7 @@ Always ensure the work reaches these outcomes:
 - Default to a full-pass design review.
 - Use staged or section-by-section review only when the work is highly uncertain, contentious, or when the user asks for iterative approval.
 - Scale each section by complexity; keep simple sections short and expand complex sections as needed.
+- In `Testing`, capture useful intent for downstream `plan`: business rules, known bugs or regressions, high-risk cases, runtime/public contracts, and anything not worth testing because type checking or implementation detail already covers it.
 - Use canonical section names so downstream `plan` can parse without mapping heuristics:
   - `Goal`
   - `Success criteria`

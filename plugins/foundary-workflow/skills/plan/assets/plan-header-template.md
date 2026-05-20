@@ -32,6 +32,11 @@
 | Success Criterion | Covered By Task(s) | Red Light Scenario(s) |
 |---|---|---|
 
+## Test Quality Evidence
+
+| Task | Requirement protected | Failure mode caught | Test category | Test level rationale | Mocks used | Runtime contract rationale |
+|---|---|---|---|---|---|---|
+
 ## Global Verification
 
 - [Full test suite]
