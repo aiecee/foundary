@@ -1,12 +1,12 @@
 ---
 name: plan
-description: Turns approved Foundary specs into strict, execution-ready implementation plans with behaviour-first vertical slices, Red/Green/Refactor task flow, explicit scope boundaries, and coverage traceability. Use when the user needs a plan that build can execute with minimal reasoning.
+description: Turns approved Foundary specs or code-change strategies into strict, execution-ready implementation plans with behaviour-first vertical slices, Red/Green/Refactor task flow, explicit scope boundaries, and coverage traceability. Use when the user needs a plan that build can execute with minimal reasoning.
 compatibility: 'Requires: git, filesystem access, ability to run project test/lint/build commands.'
 ---
 
 # Plan
 
-Turns an approved Foundary spec into a deterministic, scoped, execution-ready implementation plan that downstream `build` can follow linearly with minimal inference.
+Turns an approved Foundary spec or code-change strategy into a deterministic, scoped, execution-ready implementation plan that downstream `build` can follow linearly with minimal inference.
 
 Preserved strengths from earlier planning iterations:
 - repository grounding
@@ -27,8 +27,9 @@ Strengthened requirements:
 
 Primary input:
 - an approved Foundary spec document (prefer docs under `docs/plans/`)
+- an approved code-change strategy from `refactor`, `fix`, `harden`, or `migrate`
 
-Fallback input (only if no Foundary spec exists):
+Fallback input (only if no Foundary spec or code-change strategy exists):
 - external requirements or design docs
 
 When using fallback input:
@@ -36,6 +37,12 @@ When using fallback input:
 - explicitly flag missing sections
 - do not invent missing detail
 - label uncertainty clearly
+
+When using strategy input:
+- preserve the strategy's change intent, scope boundary, out-of-scope items, and verification posture
+- convert only grounded strategy details into executable plan tasks
+- do not invent missing contracts, call sites, compatibility requirements, or validation commands
+- if the strategy is too partial to become execution-ready, stop and ask for the missing decision
 
 ## Required source sections from spec
 
@@ -54,6 +61,33 @@ If any required section is missing:
 - continue only with grounded information
 - avoid presenting assumptions as facts
 
+## Required source sections from strategy
+
+Extract and preserve:
+- Change Intent
+- Scope Boundary
+- Evidence / Protection
+- Proposed Steps
+- Verification Posture
+- Handoff Recommendation
+- Out Of Scope
+
+Also preserve strategy-specific sections when present:
+- Behaviour To Preserve
+- Observed Failure
+- Likely Cause
+- Risk / Failure Mode
+- Intended Behaviour
+- Guarded Cases
+- Source Contract
+- Target Contract
+- Compatibility / Rollout
+
+If a required strategy section is missing:
+- mark it as `Missing from source strategy`
+- continue only when the remaining strategy is still execution-ready
+- ask for clarification when implementation would require guessing
+
 ## Workflow
 
 1. **Ground in repository context before planning.**
@@ -71,8 +105,9 @@ If any required section is missing:
      - `Proposed path: path/to/file`
      - `Reason: why this is uncertain`
 
-2. **Parse and scope from the spec.**
-   - List all success criteria from the source spec.
+2. **Parse and scope from the source.**
+   - For specs, list all success criteria from the source spec.
+   - For strategies, treat the change intent, scope boundary, verification posture, and out-of-scope items as the source of truth.
    - Identify constraints and non-goals that must bound implementation.
    - Derive behaviour slices; avoid architecture-first decomposition.
 
@@ -98,8 +133,8 @@ If any required section is missing:
    - Plans must not require executor inference for files, commands, completion criteria, or scope boundaries.
 
 5. **Run mandatory coverage traceability check before output.**
-   - Map each success criterion to at least one task.
-   - Map each success criterion to at least one Red-light scenario.
+   - Map each success criterion or strategy intent to at least one task.
+   - Map each success criterion or strategy intent to at least one Red-light scenario or documented verification posture.
    - Confirm each Red-light scenario satisfies `assets/test-quality-rubric.md`.
    - Flag uncovered criteria and resolve gaps before finalizing.
    - Include the coverage traceability table in the plan header.

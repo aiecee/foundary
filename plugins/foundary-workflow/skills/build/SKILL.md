@@ -1,6 +1,6 @@
 ---
 name: build
-description: Executes an implementation plan task-by-task with strict Red/Green/Refactor discipline, verification, and feedback checkpoints. Use when the user has a plan file and wants implementation performed deterministically.
+description: Executes an approved implementation plan or scoped code-change strategy with deterministic scope control, contextual verification, and feedback checkpoints. Use when the user has a plan or strategy and wants implementation performed safely.
 compatibility: 'Requires: filesystem access and ability to run project test/lint/build commands.'
 ---
 
@@ -8,19 +8,23 @@ compatibility: 'Requires: filesystem access and ability to run project test/lint
 
 ## Overview
 
-Load an implementation-ready plan (typically `docs/plans/YYYY-MM-DD-<topic>.md`), validate that the plan and current task are executable, then execute tasks in order using:
+Load an implementation-ready plan (typically `docs/plans/YYYY-MM-DD-<topic>.md`) or an approved code-change strategy, validate that the source and current work are executable, then execute in order.
+
+For full implementation plans, use:
 
 Red light -> Green light -> Refactor -> Verification -> Feedback.
 
-Treat the plan as the source of truth for task order and scope. Do not redesign the plan during execution.
+For approved strategies, use the strategy's verification posture instead of mandatory new Red-first tests.
+
+Treat the plan or strategy as the source of truth for task order and scope. Do not redesign the source during execution.
 
 ## Principles
 
 - Validate for execution, not critique.
-- Treat the plan as the source of truth.
+- Treat the plan or strategy as the source of truth.
 - Stay inside the current task's declared scope.
 - Execute one task at a time.
-- Keep task tests green after Green and Refactor.
+- Keep task checks green after implementation and any refactor.
 - Use minimal meaningful verification to control token and runtime cost.
 - Preserve deterministic behavior; stop instead of guessing.
 - Do not widen scope opportunistically.
@@ -28,14 +32,14 @@ Treat the plan as the source of truth for task order and scope. Do not redesign 
 ## Precedence
 
 1. Higher-priority system, developer, and repo instructions override this skill.
-2. The implementation plan overrides default execution choices where explicit.
+2. The implementation plan or approved strategy overrides default execution choices where explicit.
 3. If instructions conflict or execution would require guessing, stop and ask.
 
 ## Workflow
 
 ### 1) Ground execution in the repo
 
-Before plan validation or implementation, inspect enough repository context to ground execution:
+Before source validation or implementation, inspect enough repository context to ground execution:
 
 - `README.md` or `README.*`
 - `AGENTS.md` or equivalent operator guidance
@@ -54,12 +58,12 @@ Establish:
 - available verification commands
 - repo conventions that affect execution
 
-If repository reality conflicts with the plan in a way that requires guessing, stop and ask.
+If repository reality conflicts with the plan or strategy in a way that requires guessing, stop and ask.
 
-### 2) Load and validate the plan
+### 2) Load and validate the execution source
 
-1. Load the plan from the user-provided path or the expected `docs/plans/...` location.
-2. Validate that the plan is execution-ready before implementation starts.
+1. Load the plan or strategy from the user-provided path, prompt, or the expected `docs/plans/...` location.
+2. Validate that the source is execution-ready before implementation starts.
 
 A plan is execution-ready when:
 
@@ -69,8 +73,24 @@ A plan is execution-ready when:
 - each task includes explicit Red light, Green light, and Refactor sections
 - verification requirements are explicit when broader checks are required
 
-3. If the current task is structurally incomplete, contradictory, or would require guessing, stop and ask.
-4. If ready, create a task list once with one entry per plan task. Do not recreate it later.
+An approved strategy is execution-ready when:
+
+- the change intent is clear
+- the scope boundary and out-of-scope items are explicit
+- proposed steps are small enough to execute directly
+- relevant files or likely locations can be identified without guessing
+- the verification posture is explicit
+- the strategy does not require sequencing, compatibility, or architecture decisions that belong in `plan`
+
+Allowed strategy verification postures:
+
+- `existing red`: existing failing test, command, reproduction, runtime error, or reported behaviour demonstrates the issue.
+- `characterization`: existing passing tests or manual checks protect behaviour that must remain unchanged.
+- `new regression`: add focused coverage when valuable.
+- `no new test`: allowed only for trivial, low-risk, or better-verified changes.
+
+3. If the current task or strategy is structurally incomplete, contradictory, too broad, lacks scope boundaries, requires decomposition, or would require guessing, stop and recommend `plan` or clarification.
+4. If ready, create a task list once with one entry per plan task or strategy step. Do not recreate it later.
 5. Read `assets/validation-result-template.md` and report validation using the template exactly as-is.
 
 ### 3) Execute current task
@@ -78,7 +98,7 @@ A plan is execution-ready when:
 For each task in order:
 
 1. Mark task as in-progress.
-2. Execute Red light first.
+2. For a full implementation plan, execute Red light first.
 
 Red light requirements:
 
@@ -90,27 +110,36 @@ Red light requirements:
 - Setup failures (compile/import/config/mock issues) must be fixed before proceeding.
 - If Red-first is impractical for a behavior, stop and ask how to proceed (mock/stub, documented exception, or manual verification).
 
-3. Execute one Green light pass.
+For an approved strategy, follow the declared verification posture:
 
-Green light requirements:
+- `existing red`: run or cite the existing failing signal before implementation, then verify it passes after the fix.
+- `characterization`: run or cite the characterization check before implementation when practical, then verify it still passes after the change.
+- `new regression`: write only the focused regression coverage required by the strategy, confirm the intended signal, then implement.
+- `no new test`: document why no new test is appropriate and run the smallest meaningful non-test verification.
 
-- Implement the minimum in-scope changes needed to pass Red tests.
-- Rerun relevant task tests and confirm pass.
+If the strategy's verification posture is missing or not credible for the risk, stop and ask whether to update the strategy or produce a full plan.
+
+3. Execute one implementation pass.
+
+Implementation requirements:
+
+- Implement the minimum in-scope changes needed to satisfy the plan or strategy.
+- Rerun relevant task checks and confirm pass.
 
 4. Execute one Refactor pass.
 
 Refactor requirements:
 
 - Only behavior-preserving cleanup within task scope.
-- Rerun relevant task tests and confirm pass.
+- Rerun relevant task checks and confirm pass.
 - Perform an additional refactor pass only when a concrete behavior-preserving issue remains and scope still permits it.
 
 5. Run verification.
 
 Verification policy:
 
-- Always run the minimal task-level checks required by Red/Green/Refactor.
-- Run broader checks (lint/full suite/typecheck/build/manual flow) only when explicitly defined by the plan.
+- Always run the minimal task-level checks required by the plan or strategy.
+- Run broader checks (lint/full suite/typecheck/build/manual flow) only when explicitly defined by the plan or strategy.
 - Do not add broad checks by default.
 
 6. Reconcile implementation against the task's scope and file list. If needed changes are out of scope, stop and ask.
@@ -125,9 +154,9 @@ Verification policy:
 Feedback scope:
 
 - In scope: implementation details, test clarity, code quality inside current task.
-- Out of scope: new requirements, design shifts, task reordering, plan rewrites.
+- Out of scope: new requirements, design shifts, task reordering, plan or strategy rewrites.
 
-If feedback implies plan/design changes, stop and ask whether to pause execution and update plan/design first.
+If feedback implies plan, strategy, or design changes, stop and ask whether to pause execution and update the source first.
 
 9. Mark task completed.
 10. Report and wait before starting next task.
@@ -145,10 +174,11 @@ Then stop.
 ## Rules
 
 - Do not skip or reorder tasks unless explicitly instructed by the user.
-- Do not run Green before Red.
+- For full plans, do not run Green before Red.
+- For strategies, do not implement before satisfying the declared verification posture.
 - Do not expand scope beyond the current task.
-- Default to one Green pass and one Refactor pass.
-- Rerun relevant task tests after Green and after Refactor.
+- Default to one implementation pass and one Refactor pass.
+- Rerun relevant task checks after implementation and after Refactor.
 - Complete feedback loop before starting the next task.
 - Do not absorb useful adjacent cleanup unless explicitly planned.
 
@@ -159,15 +189,15 @@ Then stop.
 - implementation would require guessing
 - current task is not execution-ready
 - verification fails repeatedly without clear cause
-- current Red test would create low-value tests instead of protecting meaningful behaviour
-- repo reality conflicts materially with the plan
+- current Red test or strategy verification posture would create low-value tests instead of protecting meaningful behaviour
+- repo reality conflicts materially with the plan or strategy
 - scope would need to expand beyond the current task
 
 In these cases: stop execution, describe the issue, and ask for clarification.
 
 ## Return to validation when
 
-- the plan is updated
+- the plan or strategy is updated
 - current task changes materially
 - new constraints affect executability
 

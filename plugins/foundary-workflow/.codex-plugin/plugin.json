@@ -1,12 +1,12 @@
 {
   "name": "foundary-workflow",
   "version": "0.1.0",
-  "description": "Foundary Codex workflow skills for investigation, specification, planning, build execution, and test-review.",
+  "description": "Foundary Codex workflow skills for investigation, specification, strategy, planning, build execution, scope guarding, and test-review.",
   "skills": "./skills/",
   "interface": {
     "displayName": "Foundary Workflow",
-    "shortDescription": "Investigate, spec, plan, build, and test-review workflows for Codex.",
-    "longDescription": "Guided Foundary workflow skills for repository investigation, shaping specs, planning implementation, executing build tasks, and read-only test review in Codex.",
+    "shortDescription": "Investigate, spec, strategy, plan, build, scope-guard, and test-review workflows for Codex.",
+    "longDescription": "Guided Foundary workflow skills for repository investigation, shaping specs and code-change strategies, planning implementation, executing build tasks, guarding scope, and read-only test review in Codex.",
     "developerName": "Foundary",
     "category": "Coding",
     "capabilities": ["Read", "Write"]
