@@ -16,6 +16,7 @@ Review existing or changed tests to decide whether they protect meaningful behav
 - Never mutate external systems.
 - Prefer evidence over assumptions.
 - Judge tests by the requirement, regression, risk, or runtime contract they protect.
+- Do not treat a test as useful unless the protected behaviour and realistic failure mode can be named.
 - Do not require tests for every change.
 - Do not treat every mock, snapshot, or data-shape assertion as invalid.
 
@@ -27,6 +28,7 @@ Before reviewing tests, read `assets/test-review-rubric.md`.
 
 Use the rubric to classify:
 
+- test utility: HIGH VALUE, USEFUL BUT WEAK, LOW VALUE, NOT WORTH KEEPING AS WRITTEN, or NEEDS CONTEXT
 - missing meaningful test
 - low-value test
 - over-mocked test
@@ -100,13 +102,28 @@ Prefer focused inspection. Avoid broad repository crawling unless the review sco
 Every finding should include:
 
 - the test file and line when available
+- the utility classification
 - the finding type, such as missing meaningful test or over-mocked test
 - the behaviour, requirement, risk, regression, or runtime contract involved
+- the realistic breakage that should make the test fail
 - why the current test would fail to catch a realistic broken behaviour
+- whether the implementation could be broken while the test still passes
 - a concise recommendation for improving the test
 - confidence when evidence is partial
 
 Avoid findings that only say coverage is low. Explain the behaviour or failure mode that matters.
+
+## Usefulness gate
+
+Before praising or accepting a test, answer:
+
+1. What behaviour, requirement, regression, risk, or runtime contract does this test protect?
+2. What realistic breakage would make it fail?
+3. Would it fail for the right reason, or only because implementation details changed?
+4. Could the implementation be broken while this test still passes?
+5. Is the test cheaper to maintain than the risk it protects?
+
+If these cannot be answered from available evidence, classify the test as LOW VALUE or NEEDS CONTEXT rather than useful.
 
 ## Output format
 
@@ -115,21 +132,48 @@ Lead with findings. Use this shape:
 ```text
 Findings
 - [severity] file:line - finding type
+  Utility: HIGH VALUE | USEFUL BUT WEAK | LOW VALUE | NOT WORTH KEEPING AS WRITTEN | NEEDS CONTEXT
   Behaviour/risk:
+  Realistic failure mode:
   Evidence:
   Recommendation:
 
-Good coverage observed
-- file:line - behaviour protected, when useful
+Useful tests observed
+- file:line
+  Utility:
+  Behaviour/contract protected:
+  Why useful:
+  What would break it:
+  Remaining weakness:
 
 Not worth testing / acceptable absence
 - reason, when useful
 
 Open questions
 - unclear requirement, missing bug context, or command safety issue
+
+Review outcome
+- ACCEPT TESTS | ACCEPT WITH RISKS | REWORK TESTS | NO MEANINGFUL TEST REVIEW POSSIBLE
 ```
 
 If there are no actionable findings, say that clearly and mention remaining test gaps or residual risk.
+
+End each review with exactly one review outcome:
+
+- ACCEPT TESTS: Tests provide meaningful protection for the reviewed scope.
+- ACCEPT WITH RISKS: Tests are useful enough to keep, but important gaps or weaknesses remain.
+- REWORK TESTS: Tests exist but do not provide enough meaningful behavioural protection.
+- NO MEANINGFUL TEST REVIEW POSSIBLE: Required context is missing.
+
+This is a test-usefulness judgement, not a git readiness decision.
+
+For LOW VALUE or NOT WORTH KEEPING AS WRITTEN tests, recommend one of:
+
+- keep as-is
+- keep but strengthen
+- replace with a behaviour-level test
+- delete if not required by project convention
+- move to a lower-priority follow-up
 
 ## Severity guidance
 
