@@ -117,6 +117,7 @@ If a required strategy section is missing:
    - Allow only the minimal enabling infrastructure needed for the next behaviour slice.
 
 4. **Build execution contract using templates.**
+   - Read `../../assets/test-quality-rubric.md` before choosing test boundaries or Red-light test levels.
    - Read `assets/test-quality-rubric.md` before creating Red-light scenarios.
    - Read `assets/implementation-plan-template.md` as the canonical plan interface.
    - Use `assets/task-structure-template.md` for per-task Red/Green/Refactor detail where needed.
@@ -135,7 +136,7 @@ If a required strategy section is missing:
 5. **Run mandatory coverage traceability check before output.**
    - Map each success criterion or strategy intent to at least one task.
    - Map each success criterion or strategy intent to at least one Red-light scenario or documented verification posture.
-   - Confirm each Red-light scenario satisfies `assets/test-quality-rubric.md`.
+   - Confirm each Red-light scenario satisfies the shared Test Quality Rubric and `assets/test-quality-rubric.md`.
    - Flag uncovered criteria and resolve gaps before finalizing.
    - Include the coverage traceability table in the plan header.
 

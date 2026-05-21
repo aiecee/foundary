@@ -26,6 +26,7 @@ The strategy can be handed to `build` for direct execution when the failure and 
 - Prefer the smallest fix that addresses the root cause.
 - Avoid surrounding rewrites unless necessary for the fix.
 - Add or update regression coverage when valuable.
+- Before recommending regression coverage, read and apply `../../assets/test-quality-rubric.md`.
 - Verify the fix against the original failure mode.
 - Do not weaken tests unless the test is proven wrong and the corrected test still protects meaningful behaviour.
 - Recommend `scope-guard` after changes when drift risk is meaningful.
@@ -60,7 +61,7 @@ observe -> reproduce -> isolate -> minimal fix -> regression decision -> verify
 3. Reproduce with the narrowest useful command, or document why reproduction is unavailable.
 4. Isolate likely cause using evidence from code, tests, logs, history, or runtime behaviour.
 5. Define the minimal fix boundary and affected files or likely locations.
-6. Decide whether regression coverage is valuable.
+6. Read `../../assets/test-quality-rubric.md`, then decide whether regression coverage is valuable and at which boundary.
 7. Choose a verification posture:
    - `existing red`: existing failing test, command, reproduction, runtime error, or reported behaviour demonstrates the problem.
    - `new regression`: add focused coverage for a valuable failure mode.

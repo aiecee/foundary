@@ -22,11 +22,14 @@ Review existing or changed tests to decide whether they protect meaningful behav
 
 If the user asks for fixes, recommend follow-up changes or a `plan`/`build` workflow instead of editing directly.
 
-## Required rubric
+## Required rubrics
 
-Before reviewing tests, read `assets/test-review-rubric.md`.
+Before reviewing tests, read:
 
-Use the rubric to classify:
+- `../../assets/test-quality-rubric.md`
+- `assets/test-review-rubric.md`
+
+Use the rubrics to classify:
 
 - test utility: HIGH VALUE, USEFUL BUT WEAK, LOW VALUE, NOT WORTH KEEPING AS WRITTEN, or NEEDS CONTEXT
 - missing meaningful test
@@ -88,7 +91,7 @@ Prefer focused inspection. Avoid broad repository crawling unless the review sco
 
 ## Workflow
 
-1. Read `assets/test-review-rubric.md`.
+1. Read `../../assets/test-quality-rubric.md` and `assets/test-review-rubric.md`.
 2. Establish review scope from the user request.
 3. Identify test files, helpers, mocks, fixtures, and snapshots in scope.
 4. Inspect related implementation and requirement context.
@@ -174,6 +177,8 @@ For LOW VALUE or NOT WORTH KEEPING AS WRITTEN tests, recommend one of:
 - replace with a behaviour-level test
 - delete if not required by project convention
 - move to a lower-priority follow-up
+
+When recommending replacement or strengthening, apply `../../assets/test-quality-rubric.md`.
 
 ## Severity guidance
 

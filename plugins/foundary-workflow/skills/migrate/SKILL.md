@@ -46,6 +46,7 @@ The strategy can be handed to `build` for direct execution when small and mechan
 - Search for call sites, imports, references, and integration points.
 - Run clearly non-mutating checks when safe.
 - Recommend compatibility and rollout posture.
+- Before recommending new migration coverage, read and apply `../../assets/test-quality-rubric.md`.
 - Produce strategy text in chat.
 - Ask before saving a strategy.
 

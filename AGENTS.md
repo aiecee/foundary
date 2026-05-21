@@ -74,6 +74,15 @@ tail -n 120 /tmp/test.log
 - Keep plans testable and executable.
 - Update plans when implementation reality differs from assumptions.
 
+# Test Boundary Discipline
+- Prefer testing behavior at the smallest stable boundary that proves the requirement.
+- For pure business rules and decision logic, prefer pure tests with plain data inputs and outputs.
+- Mock only external, slow, nondeterministic, or out-of-process dependencies unless the test boundary explicitly requires otherwise.
+- Avoid heavily mocked framework, component, or integration tests when the same behavior can be covered through a smaller stable boundary.
+- Use component, UI, HTTP, database, or end-to-end tests when framework wiring, integration contracts, persistence, or user interaction is the behavior under test.
+- If a test requires many mocks, pause and reconsider whether the behavior belongs behind a smaller testable boundary.
+- Do not extract helpers only for tests unless the helper represents a real domain, policy, parsing, validation, or decision boundary.
+
 # Verification discipline
 - Use minimal meaningful verification during implementation.
 - Run the narrowest useful checks by default.

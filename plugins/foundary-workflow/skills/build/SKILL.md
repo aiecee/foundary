@@ -102,6 +102,7 @@ For each task in order:
 
 Red light requirements:
 
+- Before adding or modifying tests, read and apply `../../assets/test-quality-rubric.md`.
 - Write only the failing tests for the current task behavior.
 - Run the tests and confirm they fail.
 - Failure must be behavior-meaningful, not setup failure.

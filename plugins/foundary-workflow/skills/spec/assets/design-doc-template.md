@@ -45,7 +45,7 @@
 
 ## Testing
 
-[Testing intent for downstream planning. Include only what is relevant: business rules or user outcomes to protect, known bugs or regressions to avoid reintroducing, high-risk edge cases, runtime/public contracts, useful test data, and mocks or fakes that may be appropriate. Also note anything not worth testing because type checking or implementation detail already covers it.]
+[Testing intent for downstream planning. Include only what is relevant: business rules or user outcomes to protect, known bugs or regressions to avoid reintroducing, high-risk edge cases, runtime/public contracts, useful test data, and mocks or fakes that may be appropriate. Apply the shared Test Quality Rubric when choosing boundaries, and call out when framework, integration, persistence, or user interaction is the behavior that requires a broader test. Also note anything not worth testing because type checking or implementation detail already covers it.]
 
 ## Out of scope
 

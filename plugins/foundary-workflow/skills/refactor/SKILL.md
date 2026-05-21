@@ -51,6 +51,7 @@ The strategy can be handed to `build` for direct execution when small and low-ri
 - Read relevant source, tests, docs, plans, and history.
 - Run clearly non-mutating characterization checks when safe.
 - Recommend focused characterization coverage when behaviour protection is weak.
+- Before recommending new characterization or regression coverage, read and apply `../../assets/test-quality-rubric.md`.
 - Produce strategy text in chat.
 - Ask before saving a strategy.
 

@@ -48,6 +48,7 @@ This is not a generic cleanup skill.
 - Inspect callers and runtime contracts for compatibility concerns.
 - Run clearly non-mutating checks when safe.
 - Recommend focused normal-path and hardened-path coverage.
+- Before recommending new normal-path or hardened-path coverage, read and apply `../../assets/test-quality-rubric.md`.
 - Produce strategy text in chat.
 - Ask before saving a strategy.
 

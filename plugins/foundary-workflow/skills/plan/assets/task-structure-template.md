@@ -61,6 +61,7 @@ Files the build agent must inspect before editing:
 ### Red Light
 
 Apply `assets/test-quality-rubric.md` before filling this section.
+Apply the shared Test Quality Rubric before selecting the test level.
 
 **Test Level:** unit | integration | e2e | manual verification
 
