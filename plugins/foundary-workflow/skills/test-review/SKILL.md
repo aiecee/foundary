@@ -20,13 +20,13 @@ Review existing or changed tests to decide whether they protect meaningful behav
 - Do not require tests for every change.
 - Do not treat every mock, snapshot, or data-shape assertion as invalid.
 
-If the user asks for fixes, recommend follow-up changes or a `plan`/`build` workflow instead of editing directly.
+If the user asks for fixes, recommend follow-up changes instead of editing directly.
 
 ## Required rubrics
 
-Before reviewing tests, read:
+Before reviewing tests, use:
 
-- `../../assets/test-quality-rubric.md`
+- the `test-rubric` skill
 - `assets/test-review-rubric.md`
 
 Use the rubrics to classify:
@@ -91,7 +91,7 @@ Prefer focused inspection. Avoid broad repository crawling unless the review sco
 
 ## Workflow
 
-1. Read `../../assets/test-quality-rubric.md` and `assets/test-review-rubric.md`.
+1. Use the `test-rubric` skill and read `assets/test-review-rubric.md`.
 2. Establish review scope from the user request.
 3. Identify test files, helpers, mocks, fixtures, and snapshots in scope.
 4. Inspect related implementation and requirement context.
@@ -178,7 +178,7 @@ For LOW VALUE or NOT WORTH KEEPING AS WRITTEN tests, recommend one of:
 - delete if not required by project convention
 - move to a lower-priority follow-up
 
-When recommending replacement or strengthening, apply `../../assets/test-quality-rubric.md`.
+When recommending replacement or strengthening, apply the `test-rubric` skill.
 
 ## Severity guidance
 
@@ -188,7 +188,5 @@ When recommending replacement or strengthening, apply `../../assets/test-quality
 
 ## Relationship to other skills
 
-- Use `plan` when the user wants to design new test intent for future implementation.
-- Use `build` when the user has an approved plan and wants implementation.
 - Use `investigate` when the user only wants broad read-only repository understanding.
 - Keep `foundary-git` skills focused on repository status, diff review, conflict resolution, splitting, and committing.

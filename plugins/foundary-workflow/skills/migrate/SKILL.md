@@ -6,9 +6,7 @@ compatibility: 'Requires: git and filesystem access. May inspect repository cont
 
 # Migrate
 
-Create a strategy for deliberate contract migration. This skill shapes the migration before implementation; it does not produce a normal Foundary implementation plan.
-
-The strategy can be handed to `build` for direct execution when small and mechanical, or to `plan` when call sites, compatibility, rollout, or verification need decomposition.
+Create a strategy for deliberate contract migration. This skill shapes the migration before implementation.
 
 ## Required outcomes
 
@@ -42,11 +40,11 @@ The strategy can be handed to `build` for direct execution when small and mechan
 
 ## Allowed
 
-- Read source, tests, docs, manifests, config, schemas, examples, and history.
+- Read source, tests, docs, manifests, config, schemas, examples, strategies, and history.
 - Search for call sites, imports, references, and integration points.
 - Run clearly non-mutating checks when safe.
 - Recommend compatibility and rollout posture.
-- Before recommending new migration coverage, read and apply `../../assets/test-quality-rubric.md`.
+- Before recommending new migration coverage, use the `test-rubric` skill.
 - Produce strategy text in chat.
 - Ask before saving a strategy.
 
@@ -84,14 +82,11 @@ The strategy can be handed to `build` for direct execution when small and mechan
    - `characterization`: existing tests or manual checks prove migrated behaviour remains correct.
    - `new regression`: add focused coverage for the target contract or compatibility path.
    - `no new test`: allowed only for trivial, mechanical, low-risk migrations.
-9. Recommend the next handoff:
-   - `build` for small mechanical migrations with clear verification.
-   - `plan` for broad, risky, compatibility-sensitive, or multi-phase migrations.
-   - `test-review` when migration protection is weak or unclear.
+9. Recommend whether implementation is ready, needs decomposition, or should get `test-review` first.
 
 ## Readiness gate
 
-A Migration Strategy is ready for `build` only when:
+A Migration Strategy is ready for implementation only when:
 
 - source and target contracts are explicit
 - call-site inventory is narrow and complete enough for the requested scope
@@ -100,7 +95,7 @@ A Migration Strategy is ready for `build` only when:
 - rollback/deployment notes are addressed
 - old-contract removal or support can be verified
 
-Send the strategy to `plan` when the migration is broad, multi-phase, compatibility-sensitive, deployment-sensitive, or includes semantic behaviour changes.
+Ask for decomposition before implementation when the migration is broad, multi-phase, compatibility-sensitive, deployment-sensitive, or includes semantic behaviour changes.
 
 ## Stop immediately when
 
@@ -163,7 +158,7 @@ Use this structure:
 - Old-contract removal/support verification:
 
 ## Handoff Recommendation
-- build | plan | test-review:
+- implement | decompose | test-review:
 - Reason:
 
 ## Out Of Scope

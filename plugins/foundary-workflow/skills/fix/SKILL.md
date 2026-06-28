@@ -6,9 +6,7 @@ compatibility: 'Requires: git and filesystem access. May run targeted tests or r
 
 # Fix
 
-Create a focused bug-fix strategy. This skill shapes the fix before implementation; it does not produce a normal Foundary implementation plan.
-
-The strategy can be handed to `build` for direct execution when the failure and scope are clear, or to `plan` when the fix needs decomposition.
+Create a focused bug-fix strategy. This skill shapes the fix before implementation.
 
 ## Required outcomes
 
@@ -26,14 +24,14 @@ The strategy can be handed to `build` for direct execution when the failure and 
 - Prefer the smallest fix that addresses the root cause.
 - Avoid surrounding rewrites unless necessary for the fix.
 - Add or update regression coverage when valuable.
-- Before recommending regression coverage, read and apply `../../assets/test-quality-rubric.md`.
+- Before recommending regression coverage, use the `test-rubric` skill.
 - Verify the fix against the original failure mode.
 - Do not weaken tests unless the test is proven wrong and the corrected test still protects meaningful behaviour.
 - Recommend `scope-guard` after changes when drift risk is meaningful.
 
 ## Allowed
 
-- Read relevant source, tests, docs, logs, plans, and git history.
+- Read relevant source, tests, docs, logs, strategies, and git history.
 - Run targeted reproduction commands or failing tests when safe.
 - Inspect recent changes that may explain the regression.
 - Recommend focused regression coverage.
@@ -61,19 +59,16 @@ observe -> reproduce -> isolate -> minimal fix -> regression decision -> verify
 3. Reproduce with the narrowest useful command, or document why reproduction is unavailable.
 4. Isolate likely cause using evidence from code, tests, logs, history, or runtime behaviour.
 5. Define the minimal fix boundary and affected files or likely locations.
-6. Read `../../assets/test-quality-rubric.md`, then decide whether regression coverage is valuable and at which boundary.
+6. Use the `test-rubric` skill, then decide whether regression coverage is valuable and at which boundary.
 7. Choose a verification posture:
    - `existing red`: existing failing test, command, reproduction, runtime error, or reported behaviour demonstrates the problem.
    - `new regression`: add focused coverage for a valuable failure mode.
    - `no new test`: allowed only for trivial, low-risk, or better-verified fixes.
-8. Recommend the next handoff:
-   - `build` for localized fixes with clear verification.
-   - `plan` for broad, multi-area, or sequencing-heavy fixes.
-   - `test-review` when proposed or existing regression protection is suspect.
+8. Recommend whether implementation is ready, needs decomposition, or should get `test-review` first.
 
 ## Readiness gate
 
-A Fix Strategy is ready for `build` only when:
+A Fix Strategy is ready for implementation only when:
 
 - the symptom and original failure mode are explicit
 - reproduction exists, or reproduction absence is justified and the failure is otherwise unambiguous
@@ -81,7 +76,7 @@ A Fix Strategy is ready for `build` only when:
 - fix boundary is narrow
 - verification checks the original failure mode
 
-Send the strategy to `plan` when the fix crosses multiple subsystems, requires sequencing, needs compatibility decisions, or cannot be safely localized.
+Ask for decomposition before implementation when the fix crosses multiple subsystems, requires sequencing, needs compatibility decisions, or cannot be safely localized.
 
 ## Stop immediately when
 
@@ -138,7 +133,7 @@ Use this structure:
 - Must verify original failure mode by:
 
 ## Handoff Recommendation
-- build | plan | test-review:
+- implement | decompose | test-review:
 - Reason:
 
 ## Out Of Scope

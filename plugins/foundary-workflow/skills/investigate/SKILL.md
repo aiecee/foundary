@@ -327,7 +327,7 @@ When appropriate, recommend one of:
 
 - no action needed
 - investigate further
-- create spec
+- create a focused strategy
 - create bug report
 - add instrumentation
 - add tests
@@ -341,4 +341,3 @@ When appropriate, recommend one of:
 - required access is unavailable
 - additional investigation yields diminishing returns
 - confidence cannot improve without new evidence
-
