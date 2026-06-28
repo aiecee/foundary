@@ -136,7 +136,7 @@ Use this structure:
 - Why this is enough:
 
 ## Handoff Recommendation
-- Ready for implementation planning: yes | no
+- Ready for next step: yes | no
 - Recommended next step: plan | implement directly | ask user | investigate further
 - Reason:
 

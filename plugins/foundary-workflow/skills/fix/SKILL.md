@@ -129,7 +129,7 @@ Use this structure:
 - Must verify original failure mode by:
 
 ## Handoff Recommendation
-- Ready for implementation planning: yes | no
+- Ready for next step: yes | no
 - Recommended next step: plan | implement directly | ask user | investigate further
 - Reason:
 

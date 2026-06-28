@@ -49,7 +49,6 @@ Use it before implementation, when drift is suspected, or before git review and 
 Use the narrowest available scope source:
 
 - user-stated scope
-- approved strategy
 - approved strategy or task boundary
 - current task boundary
 - explicit file list or module boundary
