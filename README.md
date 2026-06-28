@@ -2,11 +2,11 @@
 
 Foundary is a Codex plugin marketplace for strategy-first software delivery with workflow-owned guardrails and dedicated git support:
 
-`investigate` + focused strategies (`fix`, `refactor`, `harden`, `migrate`) + `plan` + `scope-guard` + `test-rubric` + git support skills (`status`, `review`, `resolve`, `split`, `commit`)
+`investigate` + `design` + focused strategies (`fix`, `refactor`, `harden`, `migrate`) + `plan` + `scope-guard` + `test-rubric` + git support skills (`status`, `review`, `resolve`, `split`, `commit`)
 
 The repository is intentionally Codex-only. It exposes two local plugins through the repo marketplace:
 
-- `foundary-workflow`: investigation, strategy, planning, scope guard, and test rubric skills.
+- `foundary-workflow`: investigation, design, strategy, planning, scope guard, and test rubric skills.
 - `foundary-git`: `status`, `review`, `resolve`, `split`, and `commit` skills.
 
 ## Architecture
@@ -15,7 +15,7 @@ Foundary follows the Codex plugin structure:
 
 - `AGENTS.md` is the portable global Codex defaults file. It is stored in the repo for versioning and should be symlinked into the global Codex config directory.
 - `.agents/plugins/marketplace.json` defines the repo marketplace.
-- `plugins/foundary-workflow` contains investigation, strategy, compact planning, scope guard, and workflow-owned test quality guidance skills.
+- `plugins/foundary-workflow` contains investigation, design, strategy, compact planning, scope guard, and workflow-owned test quality guidance skills.
 - `plugins/foundary-git` contains git analysis and commit workflow skills.
 - Each plugin owns its `.codex-plugin/plugin.json` manifest and `skills/` directory.
 
@@ -37,6 +37,7 @@ foundary/
     │       ├── refactor/
     │       ├── harden/
     │       ├── migrate/
+    │       ├── design/
     │       ├── investigate/
     │       ├── plan/
     │       ├── scope-guard/
@@ -90,12 +91,12 @@ Run that command from the repository root. Codex reads `.agents/plugins/marketpl
 
 ## Plugins
 
-- `foundary-workflow` guides investigation, focused change strategies, compact implementation plans, scope checks, and test-quality decisions.
+- `foundary-workflow` guides investigation, design decisions, focused change strategies, compact implementation plans, scope checks, and test-quality decisions.
 - `foundary-git` supports repository status checks, diff review, conflict resolution, change splitting, and scoped Conventional Commits.
 
 ## Core v2 skills
 
-- `foundary-workflow`: `investigate`, `fix`, `refactor`, `harden`, `migrate`, `plan`, `scope-guard`, `test-rubric`
+- `foundary-workflow`: `investigate`, `design`, `fix`, `refactor`, `harden`, `migrate`, `plan`, `scope-guard`, `test-rubric`
 - `foundary-git`: `status`, `review`, `resolve`, `split`, `commit`
 
 The legacy read-only `test-review` skill may still exist in the workflow plugin, but it is not a core v2 handoff target. Workflow-owned test-quality guidance lives in `test-rubric`. Git skills stay focused on repository state, diff readiness, conflict resolution, splitting, and commits.

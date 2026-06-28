@@ -1,12 +1,12 @@
 {
   "name": "foundary-workflow",
   "version": "0.1.0",
-  "description": "Foundary Codex workflow skills for investigation, strategy-first change shaping, compact planning, scope guarding, and test-quality guidance.",
+  "description": "Foundary Codex workflow skills for investigation, design strategy, strategy-first change shaping, compact planning, scope guarding, and test-quality guidance.",
   "skills": "./skills/",
   "interface": {
     "displayName": "Foundary Workflow",
-    "shortDescription": "Investigate, strategy, plan, scope-guard, and test-rubric workflows for Codex.",
-    "longDescription": "Guided Foundary workflow skills for repository investigation, shaping code-change strategies, compact behaviour-first planning, guarding scope, and applying test-quality guidance in Codex.",
+    "shortDescription": "Investigate, design, strategy, plan, scope-guard, and test-rubric workflows for Codex.",
+    "longDescription": "Guided Foundary workflow skills for repository investigation, shaping design and code-change strategies, compact behaviour-first planning, guarding scope, and applying test-quality guidance in Codex.",
     "developerName": "Foundary",
     "category": "Coding",
     "capabilities": ["Read", "Write"]
