@@ -19,6 +19,8 @@ This skill is for planning only. Do not edit files, stage changes, commit, or pe
 - Use existing repo patterns.
 - Avoid speculative abstractions.
 - Avoid broad refactors unless explicitly requested.
+- When given a `fix`, `refactor`, `harden`, `migrate`, or `design` strategy, preserve its intent, scope boundary, and verification posture.
+- Do not re-litigate a strategy unless repository reality contradicts it.
 - Call out uncertainty instead of inventing detail.
 - Do not create a plan document unless the user asks.
 - Stop and ask when product, behaviour, naming, or architecture decisions are unresolved.
