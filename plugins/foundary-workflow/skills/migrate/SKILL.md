@@ -44,7 +44,7 @@ Create a strategy for deliberate contract migration. This skill shapes the migra
 - Search for call sites, imports, references, and integration points.
 - Run clearly non-mutating checks when safe.
 - Recommend compatibility and rollout posture.
-- Before recommending new migration coverage, use the `test-rubric` skill.
+- Before recommending new migration coverage, read and apply `../test-rubric/SKILL.md`.
 - Produce strategy text in chat.
 - Ask before saving a strategy.
 
@@ -82,7 +82,7 @@ Create a strategy for deliberate contract migration. This skill shapes the migra
    - `characterization`: existing tests or manual checks prove migrated behaviour remains correct.
    - `new regression`: add focused coverage for the target contract or compatibility path.
    - `no new test`: allowed only for trivial, mechanical, low-risk migrations.
-9. Recommend whether implementation is ready, needs decomposition, or should get `test-review` first.
+9. Recommend the next step: plan, implement directly, ask user, or investigate further.
 
 ## Readiness gate
 
@@ -95,7 +95,7 @@ A Migration Strategy is ready for implementation only when:
 - rollback/deployment notes are addressed
 - old-contract removal or support can be verified
 
-Ask for decomposition before implementation when the migration is broad, multi-phase, compatibility-sensitive, deployment-sensitive, or includes semantic behaviour changes.
+Recommend planning before implementation when the migration is broad, multi-phase, compatibility-sensitive, deployment-sensitive, or includes semantic behaviour changes.
 
 ## Stop immediately when
 
@@ -108,11 +108,7 @@ Ask for decomposition before implementation when the migration is broad, multi-p
 
 ## Persistence
 
-Ask before saving a strategy. If the user wants it saved, use:
-
-`docs/plans/YYYY-MM-DD-<topic>-migration-strategy.md`
-
-Chat output is always acceptable.
+Chat output is the default. Ask before saving a strategy, and use the location the user requests.
 
 ## Output format
 
@@ -158,7 +154,8 @@ Use this structure:
 - Old-contract removal/support verification:
 
 ## Handoff Recommendation
-- implement | decompose | test-review:
+- Ready for implementation planning: yes | no
+- Recommended next step: plan | implement directly | ask user | investigate further
 - Reason:
 
 ## Out Of Scope

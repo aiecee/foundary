@@ -14,7 +14,7 @@ Create a controlled strategy for behaviour-preserving code restructuring. This s
 - Name the behaviour, public contracts, runtime contracts, observable outputs, and callers that must remain unchanged.
 - Identify existing protection and protection gaps.
 - Define a narrow scope boundary and explicit out-of-scope changes.
-- Produce a Refactor Strategy with enough evidence for implementation or decomposition.
+- Produce a Refactor Strategy with enough evidence for implementation or planning.
 
 ## Core rules
 
@@ -25,7 +25,7 @@ Create a controlled strategy for behaviour-preserving code restructuring. This s
 - Prefer small, reversible transformations.
 - Avoid opportunistic architecture redesign.
 - Avoid broad formatting churn unless formatting is the explicit requested change.
-- Recommend `test-review` first when existing behavioural protection is uncertain.
+- Recommend stronger characterization or planning when existing behavioural protection is uncertain.
 - Recommend `scope-guard` after changes when drift risk is meaningful.
 
 ## Valid refactors
@@ -49,7 +49,7 @@ Create a controlled strategy for behaviour-preserving code restructuring. This s
 - Read relevant source, tests, docs, strategies, and history.
 - Run clearly non-mutating characterization checks when safe.
 - Recommend focused characterization coverage when behaviour protection is weak.
-- Before recommending new characterization or regression coverage, use the `test-rubric` skill.
+- Before recommending new characterization or regression coverage, read and apply `../test-rubric/SKILL.md`.
 - Produce strategy text in chat.
 - Ask before saving a strategy.
 
@@ -77,7 +77,7 @@ Create a controlled strategy for behaviour-preserving code restructuring. This s
    - `characterization`: existing passing tests or manual checks protect behaviour.
    - `new regression`: add focused coverage before refactoring when valuable.
    - `no new test`: allowed only for trivial, low-risk, or better-verified restructuring.
-8. Recommend whether implementation is ready, needs decomposition, or should get `test-review` first.
+8. Recommend the next step: plan, implement directly, ask user, or investigate further.
 
 ## Readiness gate
 
@@ -88,7 +88,7 @@ A Refactor Strategy is ready for implementation only when:
 - verification posture is credible for the risk
 - no feature, fix, hardening, migration, dependency, or cleanup work is mixed in
 
-Ask for decomposition before implementation when the refactor spans multiple boundaries, requires ordering decisions, changes public surfaces, or needs stronger decomposition.
+Recommend planning before implementation when the refactor spans multiple boundaries, requires ordering decisions, changes public surfaces, or needs stronger sequencing.
 
 ## Stop immediately when
 
@@ -100,11 +100,7 @@ Ask for decomposition before implementation when the refactor spans multiple bou
 
 ## Persistence
 
-Ask before saving a strategy. If the user wants it saved, use:
-
-`docs/plans/YYYY-MM-DD-<topic>-refactor-strategy.md`
-
-Chat output is always acceptable.
+Chat output is the default. Ask before saving a strategy, and use the location the user requests.
 
 ## Output format
 
@@ -140,7 +136,8 @@ Use this structure:
 - Why this is enough:
 
 ## Handoff Recommendation
-- implement | decompose | test-review:
+- Ready for implementation planning: yes | no
+- Recommended next step: plan | implement directly | ask user | investigate further
 - Reason:
 
 ## Out Of Scope

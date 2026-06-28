@@ -6,338 +6,94 @@ compatibility: 'Requires: git, filesystem access. May use read-only MCP/tools/pl
 
 # Investigate
 
-Perform read-only investigation and repository reconnaissance.
+Produce a concise, evidence-backed investigation brief. Use this when the next useful step is understanding, not changing.
 
-The goal is to understand what exists, how it works, and what evidence supports that understanding without making any changes.
+The brief should help the user decide whether to stop, ask a question, create a strategy, or make a compact implementation plan.
 
 ## Core rules
 
-- This skill is strictly read-only.
-- Never modify repository state.
-- Never modify external state.
+- Strictly read-only.
+- Never modify repository state or external state.
 - Prefer evidence over assumptions.
 - Separate observed facts from inference.
-- If an action might have side effects, do not run it.
-- Do not confuse activity with insight.
+- Keep the investigation narrow enough to answer the question.
+- Do not produce an implementation plan.
+- Do not silently fix discovered issues.
 
 ## Allowed
 
-You may:
-
-- read files
-- search code
-- inspect git history
-- inspect tests/docs/configuration
-- inspect dependency manifests
-- inspect CI/workflows
-- run clearly non-mutating commands
-- use read-only MCP/tools/plugins
-- inspect read-only external metadata
-- produce findings and recommendations
+- Read files, docs, tests, manifests, config, CI/workflows, and logs.
+- Search code and inspect git history.
+- Run clearly non-mutating commands.
+- Use read-only MCP/tools/plugins.
+- Inspect read-only external metadata when relevant.
+- Produce findings, risks, recommendations, and next-step options.
 
 ## Forbidden
 
-You must not:
+- Do not edit, create, delete, move, format, generate, stage, commit, push, stash, reset, or amend files or git state.
+- Do not install, remove, or update dependencies.
+- Do not run migrations, generators, fixers, formatters, or write-mode tools.
+- Do not mutate databases, caches, queues, cloud resources, tickets, docs, PRs, or other external systems.
+- Do not run commands with unclear side effects.
 
-- edit files
-- create files
-- delete files
-- move files
-- stage, commit, push, or amend git history
-- install, remove, or update dependencies
-- run migrations
-- run generators, fixers, or formatters in write mode
-- mutate databases, caches, queues, cloud resources, tickets, docs, PRs, or external systems
-- use MCP/tools/plugins in write mode
-- run commands with unclear side effects
-- silently fix discovered issues
-- rewrite commands into mutating equivalents
-- "improve" the repository during investigation
+If an action might mutate state and this cannot be confidently ruled out, do not run it.
 
-If an action might mutate state and this cannot be confidently ruled out, do not perform it.
+## Investigation focus
 
-## Investigation modes
+Choose the narrowest useful focus:
 
-Choose the mode that best fits the investigation goal.
+- `architecture`: structure, boundaries, dependencies, ownership, interfaces.
+- `bug`: failure path, reproduction evidence, recent changes, likely cause.
+- `reuse`: existing helpers, similar flows, duplicated logic, patterns to extend.
+- `dependency`: manifests, imports, coupling, ownership, upgrade risk.
+- `data-flow`: inputs, transformations, storage, serialization, APIs, events.
+- `historical`: git history, blame, previous implementations, change patterns.
+- `security`: auth, authorization, secrets, trust boundaries, validation.
+- `performance`: hot paths, repeated work, caching, network, queries, allocations.
+- `test-gap`: missing coverage, weak assertions, flaky tests, integration gaps.
 
-### architecture
+## Workflow
 
-Understand system structure, boundaries, ownership, layering, dependencies, and component interaction.
+1. Restate the investigation question.
+2. Inspect only the smallest useful context.
+3. Record findings as observed, inferred, unknown, or speculative.
+4. Surface contradictions instead of smoothing them over.
+5. Recommend the next step based on evidence.
 
-Prioritize:
-- source structure
-- dependency flow
-- architecture docs
-- interfaces
-- boundaries
-- module relationships
+## Evidence quality
 
-### bug
+- Use file references, command names, commit ids, or source names when useful.
+- State confidence when evidence is partial.
+- Summarize patterns instead of dumping every occurrence.
+- Keep raw command output out of the brief unless a short excerpt is essential.
 
-Investigate failures, regressions, flaky behaviour, or unexpected output.
+## Stop immediately when
 
-Prioritize:
-- tests
-- logs
-- recent commits
-- blame/history
-- failure paths
-- reproduction evidence
+- a mutating action would be required
+- command side effects are unclear
+- required access is unavailable
+- evidence is insufficient for a safe conclusion
+- additional investigation has diminishing returns
 
-### reuse
+## Output format
 
-Determine whether existing functionality, abstractions, or patterns can be reused or extended.
-
-Prioritize:
-- existing implementations
-- shared utilities
-- similar flows
-- duplicated logic
-- abstraction boundaries
-
-### dependency
-
-Understand dependency usage, coupling, upgrade risk, or ownership.
-
-Prioritize:
-- manifests
-- lockfiles
-- imports
-- package usage
-- transitive dependencies
-
-### data-flow
-
-Trace how data moves through the system.
-
-Prioritize:
-- request flow
-- transformations
-- storage boundaries
-- events
-- serialization
-- APIs
-
-### historical
-
-Understand why something changed or how it evolved.
-
-Prioritize:
-- git history
-- blame
-- commit patterns
-- previous implementations
-- related discussions/docs
-
-### security
-
-Investigate authentication, authorization, secrets, trust boundaries, or risky behaviour.
-
-Prioritize:
-- auth flows
-- permission checks
-- secret handling
-- external access
-- validation/sanitization
-
-### performance
-
-Investigate bottlenecks, excessive work, scaling issues, or expensive paths.
-
-Prioritize:
-- hot paths
-- repeated work
-- caching
-- network boundaries
-- allocations
-- query patterns
-
-### test-gap
-
-Understand missing, weak, or inconsistent testing coverage.
-
-Prioritize:
-- uncovered behaviour
-- missing edge cases
-- flaky tests
-- integration gaps
-- inconsistent assertions
-
-## Operating principles
-
-- Prefer evidence over assumptions.
-- Separate observed facts from inference.
-- Stay focused on the investigation question.
-- Prefer narrow, evidence-driven exploration.
-- Avoid broad repository crawling unless necessary.
-- Inspect only the context required to answer well.
-- Focus on understanding existing systems before proposing changes.
-- Do not redesign systems unless explicitly asked.
-- Do not produce implementation plans.
-- When evidence is weak or incomplete, say so clearly.
-
-## Command safety policy
-
-Treat commands as one of:
-
-- Safe read-only
-- Unknown safety
-- Mutating
-
-Only execute clearly safe read-only commands.
-
-If command behaviour or script side effects are unclear:
-- do not run the command
-- explain why
-- request explicit user confirmation if necessary
-
-## Evidence classification
-
-Every meaningful conclusion should include:
-- evidence source
-- confidence
-- reasoning path when useful
-
-Classify findings as:
-
-### Observed
-
-Directly verified from source material.
-
-### Inferred
-
-Likely based on strong patterns or surrounding evidence.
-
-### Unknown
-
-Insufficient evidence to conclude safely.
-
-### Speculative
-
-Weak-confidence possibility requiring further verification.
-
-## Contradiction handling
-
-Do not silently resolve conflicting evidence.
-
-Surface contradictions explicitly.
-
-Examples:
-- implementation conflicts with docs
-- tests conflict with behaviour
-- config conflicts with runtime usage
-- multiple patterns coexist inconsistently
-
-When contradictions exist:
-- identify the conflicting evidence
-- explain the likely reason if possible
-- reduce confidence appropriately
-
-## Investigation process
-
-### 1. Understand the question
-
-Clarify what needs to be:
-- understood
-- verified
-- located
-- explained
-- traced
-- validated
-
-Choose the most appropriate investigation mode.
-
-### 2. Inspect relevant context
-
-Inspect only the smallest useful set of:
-- source files
-- tests
-- docs
-- configuration
-- dependency manifests
-- CI/workflows
-- logs/output
-- git history
-
-### 3. Build evidence
-
-Identify:
-- existing behaviour
-- architecture patterns
-- reusable functionality
-- risks
-- gaps
-- contradictions
-- unknowns
-
-### 4. Produce findings
-
-Focus on:
-- high-signal conclusions
-- concise evidence-backed summaries
-- relevant file references
-- actionable understanding
-
-## Output quality rules
-
-Outputs must be concise, high-signal, and easily consumable by both humans and AI systems.
-
-Prefer:
-- short evidence-backed findings
-- focused file references
-- clear confidence levels
-- compact summaries
-- direct recommendations
-
-Avoid:
-- verbose reasoning narration
-- exhaustive file dumps
-- repeated observations
-- unnecessary architectural speculation
-- low-signal command output
-- explaining every investigation step
-
-Summarize patterns instead of listing every occurrence unless detail is required.
-
-Use bullets and short sections over long prose.
-
-## Default output structure
+Use this structure:
 
 ```md
 # Investigation: <topic>
 
 ## Summary
 
-## Key findings
+## Findings
 
-## Relevant files
+## Evidence
 
-## Risks / unknowns
+## Risks / Unknowns
 
 ## Recommendation
 
-## Confidence
+## Next Step
 ```
 
-Expand beyond this structure only when necessary.
-
-## Recommended next actions
-
-When appropriate, recommend one of:
-
-- no action needed
-- investigate further
-- create a focused strategy
-- create bug report
-- add instrumentation
-- add tests
-- verify manually
-
-## Stop immediately when
-
-- a mutating action would be required
-- command side effects are unclear
-- evidence is insufficient for a safe conclusion
-- required access is unavailable
-- additional investigation yields diminishing returns
-- confidence cannot improve without new evidence
+Recommended next steps should be one of: no action needed, ask user, investigate further, create a strategy, create an implementation plan, implement directly, add tests, add instrumentation, or verify manually.

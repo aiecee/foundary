@@ -24,7 +24,7 @@ Create a focused bug-fix strategy. This skill shapes the fix before implementati
 - Prefer the smallest fix that addresses the root cause.
 - Avoid surrounding rewrites unless necessary for the fix.
 - Add or update regression coverage when valuable.
-- Before recommending regression coverage, use the `test-rubric` skill.
+- Before recommending regression coverage, read and apply `../test-rubric/SKILL.md`.
 - Verify the fix against the original failure mode.
 - Do not weaken tests unless the test is proven wrong and the corrected test still protects meaningful behaviour.
 - Recommend `scope-guard` after changes when drift risk is meaningful.
@@ -59,12 +59,12 @@ observe -> reproduce -> isolate -> minimal fix -> regression decision -> verify
 3. Reproduce with the narrowest useful command, or document why reproduction is unavailable.
 4. Isolate likely cause using evidence from code, tests, logs, history, or runtime behaviour.
 5. Define the minimal fix boundary and affected files or likely locations.
-6. Use the `test-rubric` skill, then decide whether regression coverage is valuable and at which boundary.
+6. Read and apply `../test-rubric/SKILL.md`, then decide whether regression coverage is valuable and at which boundary.
 7. Choose a verification posture:
    - `existing red`: existing failing test, command, reproduction, runtime error, or reported behaviour demonstrates the problem.
    - `new regression`: add focused coverage for a valuable failure mode.
    - `no new test`: allowed only for trivial, low-risk, or better-verified fixes.
-8. Recommend whether implementation is ready, needs decomposition, or should get `test-review` first.
+8. Recommend the next step: plan, implement directly, ask user, or investigate further.
 
 ## Readiness gate
 
@@ -76,7 +76,7 @@ A Fix Strategy is ready for implementation only when:
 - fix boundary is narrow
 - verification checks the original failure mode
 
-Ask for decomposition before implementation when the fix crosses multiple subsystems, requires sequencing, needs compatibility decisions, or cannot be safely localized.
+Recommend planning before implementation when the fix crosses multiple subsystems, requires sequencing, needs compatibility decisions, or cannot be safely localized.
 
 ## Stop immediately when
 
@@ -89,11 +89,7 @@ Ask for decomposition before implementation when the fix crosses multiple subsys
 
 ## Persistence
 
-Ask before saving a strategy. If the user wants it saved, use:
-
-`docs/plans/YYYY-MM-DD-<topic>-fix-strategy.md`
-
-Chat output is always acceptable.
+Chat output is the default. Ask before saving a strategy, and use the location the user requests.
 
 ## Output format
 
@@ -133,7 +129,8 @@ Use this structure:
 - Must verify original failure mode by:
 
 ## Handoff Recommendation
-- implement | decompose | test-review:
+- Ready for implementation planning: yes | no
+- Recommended next step: plan | implement directly | ask user | investigate further
 - Reason:
 
 ## Out Of Scope

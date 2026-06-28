@@ -46,7 +46,7 @@ This is not a generic cleanup skill.
 - Inspect callers and runtime contracts for compatibility concerns.
 - Run clearly non-mutating checks when safe.
 - Recommend focused normal-path and hardened-path coverage.
-- Before recommending new normal-path or hardened-path coverage, use the `test-rubric` skill.
+- Before recommending new normal-path or hardened-path coverage, read and apply `../test-rubric/SKILL.md`.
 - Produce strategy text in chat.
 - Ask before saving a strategy.
 
@@ -80,7 +80,7 @@ This is not a generic cleanup skill.
    - `characterization`: existing checks protect the unchanged normal path.
    - `new regression`: add focused coverage for the risky or guarded path.
    - `no new test`: allowed only for trivial, low-risk, or better-verified hardening.
-8. Recommend whether implementation is ready, needs decomposition, or should get `test-review` first.
+8. Recommend the next step: plan, implement directly, ask user, or investigate further.
 
 ## Readiness gate
 
@@ -92,7 +92,7 @@ A Hardening Strategy is ready for implementation only when:
 - compatibility concerns are checked or explicitly absent
 - verification covers both normal and hardened paths
 
-Ask for decomposition before implementation when hardening affects public contracts, multiple callers, permissions, data integrity, deployment sequencing, or compatibility-sensitive behaviour.
+Recommend planning before implementation when hardening affects public contracts, multiple callers, permissions, data integrity, deployment sequencing, or compatibility-sensitive behaviour.
 
 ## Stop immediately when
 
@@ -105,11 +105,7 @@ Ask for decomposition before implementation when hardening affects public contra
 
 ## Persistence
 
-Ask before saving a strategy. If the user wants it saved, use:
-
-`docs/plans/YYYY-MM-DD-<topic>-hardening-strategy.md`
-
-Chat output is always acceptable.
+Chat output is the default. Ask before saving a strategy, and use the location the user requests.
 
 ## Output format
 
@@ -151,7 +147,8 @@ Use this structure:
 - Hardened path:
 
 ## Handoff Recommendation
-- implement | decompose | test-review:
+- Ready for implementation planning: yes | no
+- Recommended next step: plan | implement directly | ask user | investigate further
 - Reason:
 
 ## Out Of Scope
