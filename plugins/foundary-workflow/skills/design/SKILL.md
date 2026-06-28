@@ -197,8 +197,8 @@ Use this structure:
 - Why it matters:
 
 ## Handoff Recommendation
-- Ready for implementation planning: yes | no
-- Recommended next step: plan | ask user | investigate further
+- Ready for next step: yes | no
+- Recommended next step: plan | implement directly | ask user | investigate further
 - Reason:
 
 Keep the strategy concise enough to guide planning without becoming a full specification.
