@@ -41,8 +41,7 @@ foundary/
     │       ├── investigate/
     │       ├── plan/
     │       ├── scope-guard/
-    │       ├── test-rubric/
-    │       └── test-review/
+    │       └── test-rubric/
     └── foundary-git/
         ├── .codex-plugin/
         │   └── plugin.json
@@ -99,4 +98,4 @@ Run that command from the repository root. Codex reads `.agents/plugins/marketpl
 - `foundary-workflow`: `investigate`, `design`, `fix`, `refactor`, `harden`, `migrate`, `plan`, `scope-guard`, `test-rubric`
 - `foundary-git`: `status`, `review`, `resolve`, `split`, `commit`
 
-The legacy read-only `test-review` skill may still exist in the workflow plugin, but it is not a core v2 handoff target. Workflow-owned test-quality guidance lives in `test-rubric`. Git skills stay focused on repository state, diff readiness, conflict resolution, splitting, and commits.
+Workflow-owned test-quality guidance lives in `test-rubric`. Git skills stay focused on repository state, diff readiness, conflict resolution, splitting, and commits.

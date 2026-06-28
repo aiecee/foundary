@@ -8,7 +8,7 @@ compatibility: 'Requires: git, filesystem access. May use read-only MCP/tools/pl
 
 Produce a concise, evidence-backed investigation brief. Use this when the next useful step is understanding, not changing.
 
-The brief should help the user decide whether to stop, ask a question, create a strategy, or make a compact implementation plan.
+The brief should help the user decide whether to stop, ask a question, create a named strategy, or make a compact implementation plan.
 
 ## Core rules
 
@@ -96,4 +96,4 @@ Use this structure:
 ## Next Step
 ```
 
-Recommended next steps should be one of: no action needed, ask user, investigate further, create a strategy, create an implementation plan, implement directly, add tests, add instrumentation, or verify manually.
+Recommended next steps should be one of: no action needed, ask user, investigate further, create design strategy, create fix strategy, create refactor strategy, create hardening strategy, create migration strategy, create implementation plan, implement directly, add tests, add instrumentation, or verify manually.

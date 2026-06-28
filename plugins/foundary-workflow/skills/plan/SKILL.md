@@ -37,7 +37,7 @@ Use another strategy first when:
 - Moving from one contract, convention, dependency, schema, config, or API to another -> `migrate`
 - Ambiguous or architectural work with meaningful trade-offs -> `design`
 
-If the request needs an architectural decision with meaningful trade-offs, pause and ask for that decision before producing an implementation plan.
+If architectural trade-offs are unresolved, route to `design` before producing an implementation plan. Ask the user only when `design` cannot resolve the decision without product, naming, UX, public-contract, rollout, or compatibility input.
 
 Continue with `plan` when the goal or strategy is clear enough to break into implementation steps.
 
