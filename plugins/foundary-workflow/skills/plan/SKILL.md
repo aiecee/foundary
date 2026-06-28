@@ -33,6 +33,7 @@ Use another strategy first when:
 - Behaviour-preserving restructure -> `refactor`
 - Safer validation, error handling, permissions, external input, or edge cases -> `harden`
 - Moving from one contract, convention, dependency, schema, config, or API to another -> `migrate`
+- Ambiguous or architectural work with meaningful trade-offs -> `design`
 
 If the request needs an architectural decision with meaningful trade-offs, pause and ask for that decision before producing an implementation plan.
 
@@ -143,4 +144,3 @@ A good plan is:
 * honest about uncertainty
 * free of invented architecture
 * free of unrelated cleanup
-
