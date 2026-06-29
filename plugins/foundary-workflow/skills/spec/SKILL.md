@@ -44,8 +44,9 @@ Always ensure the work reaches these outcomes:
 - Use staged or section-by-section review only when the work is highly uncertain, contentious, or when the user asks for iterative approval.
 - Scale each section by complexity; keep simple sections short and expand complex sections as needed.
 - Before shaping `Testing`, read and apply `../../assets/test-quality-rubric.md`.
-- In `Testing`, capture useful intent for downstream `plan`: business rules, known bugs or regressions, high-risk cases, runtime/public contracts, and anything not worth testing because type checking or implementation detail already covers it.
-- In `Testing`, call out when framework, integration, persistence, or user interaction is the behavior that requires a broader test.
+- In `Testing`, capture useful intent for downstream `plan`: business-critical behaviours worth protecting, known bugs or regressions, high-risk edge cases, runtime/public contracts, useful test data, and expected verification boundary when obvious.
+- In `Testing`, also capture non-testing decisions: things not worth new automated coverage because type checking, existing coverage, manual verification, or implementation-detail boundaries already cover the risk.
+- In `Testing`, call out when framework, integration, persistence, or user interaction is the behavior that requires a broader test, and when pure business logic should be protected with simple input/output tests.
 - Use canonical section names so downstream `plan` can parse without mapping heuristics:
   - `Goal`
   - `Success criteria`

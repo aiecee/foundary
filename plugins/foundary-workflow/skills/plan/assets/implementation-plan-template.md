@@ -10,13 +10,14 @@
 - Objective:
 - Scope boundaries:
 - Pre-read files:
-- Red:
-  - Requirement protected:
-  - Failure mode caught:
-  - Test category:
-  - Test level rationale:
-  - Mocks used:
-  - Runtime contract rationale:
+- Verification Plan:
+  - Posture:
+  - Decision rationale:
+  - Boundary selected:
+  - Requirement/risk/contract protected:
+  - Realistic failure mode:
+  - Why not a different boundary:
+  - New automated test details, if applicable:
 - Green:
 - Refactor:
 - Verification command(s):
@@ -25,5 +26,5 @@
 
 ## Traceability
 - Success criterion -> task(s):
-- Success criterion -> verification scenario(s):
-- Test quality evidence: Requirement protected, Failure mode caught, Test category, Test level rationale, Mocks used, Runtime contract rationale
+- Success criterion -> verification posture and target:
+- Verification quality evidence: Posture, requirement/risk/contract, failure mode, boundary rationale, mocks/fakes, runtime contract rationale, no-new-test rationale

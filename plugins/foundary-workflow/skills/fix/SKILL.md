@@ -27,6 +27,7 @@ The strategy can be handed to `build` for direct execution when the failure and 
 - Avoid surrounding rewrites unless necessary for the fix.
 - Add or update regression coverage when valuable.
 - Before recommending regression coverage, read and apply `../../assets/test-quality-rubric.md`.
+- Do not recommend new tests unless the protected requirement/risk/contract and realistic failure mode can be named. Prefer existing coverage, characterization, manual verification, or no new test when a new automated test would be low value.
 - Verify the fix against the original failure mode.
 - Do not weaken tests unless the test is proven wrong and the corrected test still protects meaningful behaviour.
 - Recommend `scope-guard` after changes when drift risk is meaningful.
@@ -65,7 +66,7 @@ observe -> reproduce -> isolate -> minimal fix -> regression decision -> verify
 7. Choose a verification posture:
    - `existing red`: existing failing test, command, reproduction, runtime error, or reported behaviour demonstrates the problem.
    - `new regression`: add focused coverage for a valuable failure mode.
-   - `no new test`: allowed only for trivial, low-risk, or better-verified fixes.
+   - `no new test`: allowed only for trivial, low-risk, manually verified, or better-verified fixes.
 8. Recommend the next handoff:
    - `build` for localized fixes with clear verification.
    - `plan` for broad, multi-area, or sequencing-heavy fixes.

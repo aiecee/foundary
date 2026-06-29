@@ -27,6 +27,7 @@ The strategy can be handed to `build` for direct execution when small and mechan
 - Decide whether backward compatibility or transition support is required.
 - Separate mechanical updates from semantic behaviour changes.
 - Update tests, docs, config, and examples when they are part of the migrated contract.
+- Do not recommend new tests unless the protected requirement/risk/contract and realistic failure mode can be named. Prefer existing coverage, characterization, manual verification, or no new test when a new automated test would be low value.
 - Verify the old assumption is removed or intentionally supported.
 - Recommend `scope-guard` after changes when drift risk is meaningful.
 
@@ -83,7 +84,7 @@ The strategy can be handed to `build` for direct execution when small and mechan
 8. Choose a verification posture:
    - `characterization`: existing tests or manual checks prove migrated behaviour remains correct.
    - `new regression`: add focused coverage for the target contract or compatibility path.
-   - `no new test`: allowed only for trivial, mechanical, low-risk migrations.
+   - `no new test`: allowed only for trivial, mechanical, low-risk, manually verified, or better-verified migrations.
 9. Recommend the next handoff:
    - `build` for small mechanical migrations with clear verification.
    - `plan` for broad, risky, compatibility-sensitive, or multi-phase migrations.

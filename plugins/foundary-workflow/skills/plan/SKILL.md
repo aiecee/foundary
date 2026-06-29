@@ -1,6 +1,6 @@
 ---
 name: plan
-description: Turns approved Foundary specs or code-change strategies into strict, execution-ready implementation plans with behaviour-first vertical slices, Red/Green/Refactor task flow, explicit scope boundaries, and coverage traceability. Use when the user needs a plan that build can execute with minimal reasoning.
+description: Turns approved Foundary specs or code-change strategies into strict, execution-ready implementation plans with behaviour-first vertical slices, verification posture decisions, optional Red/Green/Refactor task flow, explicit scope boundaries, and coverage traceability. Use when the user needs a plan that build can execute with minimal reasoning.
 compatibility: 'Requires: git, filesystem access, ability to run project test/lint/build commands.'
 ---
 
@@ -11,7 +11,7 @@ Turns an approved Foundary spec or code-change strategy into a deterministic, sc
 Preserved strengths from earlier planning iterations:
 - repository grounding
 - behaviour-first vertical slicing
-- Red / Green / Refactor
+- Red / Green / Refactor when a new automated test is justified
 - Given / When / Then scenarios
 - verification-first planning
 
@@ -19,8 +19,8 @@ Strengthened requirements:
 - strict scope control
 - explicit execution contract per task
 - low-cost model reliability
-- traceability from spec -> tasks -> tests -> verification
-- test quality evidence for every Red-light scenario
+- traceability from spec -> tasks -> verification posture -> verification
+- test quality evidence for every planned new automated test
 - explicit uncertainty labeling
 
 ## Input contract
@@ -117,15 +117,28 @@ If a required strategy section is missing:
    - Allow only the minimal enabling infrastructure needed for the next behaviour slice.
 
 4. **Build execution contract using templates.**
-   - Read `../../assets/test-quality-rubric.md` before choosing test boundaries or Red-light test levels.
+   - Read `../../assets/test-quality-rubric.md` before choosing verification posture or new automated test boundaries.
    - Read `assets/test-quality-rubric.md` before creating Red-light scenarios.
    - Read `assets/implementation-plan-template.md` as the canonical plan interface.
-   - Use `assets/task-structure-template.md` for per-task Red/Green/Refactor detail where needed.
+   - Use `assets/task-structure-template.md` for per-task verification posture and Red/Green/Refactor detail where needed.
+   - Before creating Red-light scenarios, classify each task with a verification posture:
+     - `new automated test`
+     - `existing coverage / characterization`
+     - `manual verification`
+     - `no new test`
+   - Only create Red-light scenarios when the posture is `new automated test`.
+   - For `existing coverage / characterization`, `manual verification`, or `no new test`, record the rationale and verification target instead of inventing a test.
    - Every task must explicitly define:
      - pre-read files
      - files to create/modify/delete
-     - Red-light test level, command, scenarios, expected failure
-     - Red-light test quality evidence: Requirement protected, Failure mode caught, Test category, Test level rationale, Mocks used, Runtime contract rationale when asserting shape
+     - verification posture
+     - decision rationale
+     - boundary selected: pure input/output | module/service | integration/API/database/component | e2e/manual | none
+     - requirement, risk, or contract protected
+     - realistic failure mode
+     - why not a different boundary
+     - Red-light test command, scenarios, and expected failure only when posture is `new automated test`
+     - test quality evidence for new automated tests: requirement protected, failure mode caught, boundary rationale, mocks/fakes used, runtime contract rationale when asserting shape, and rewrite durability
      - Green-light exact implementation boundaries
      - Refactor limits
      - task verification command
@@ -133,14 +146,35 @@ If a required strategy section is missing:
      - stop condition
    - Plans must not require executor inference for files, commands, completion criteria, or scope boundaries.
 
-5. **Run mandatory coverage traceability check before output.**
+5. **Apply the test-selection gate before planning a new automated test.**
+   - A task may plan a new automated test only when the plan can answer:
+     - What behaviour, requirement, regression, risk, or runtime/public contract does this test protect?
+     - What realistic breakage would make it fail?
+     - Would it fail for the right reason, or only because implementation details changed?
+     - Could the implementation be broken while this test still passes?
+     - Is the test cheaper to maintain than the risk it protects?
+     - Is this the smallest stable boundary that proves the behaviour?
+     - Would this test remain valuable if the implementation were rewritten?
+   - If these cannot be answered from repository, spec, or strategy evidence, do not invent a new automated test. Choose `existing coverage / characterization`, `manual verification`, or `no new test` and record the rationale.
+   - Choose the smallest stable boundary using this ladder:
+     - pure input/output test for business rules, policies, parsing, validation, transformation, filtering, mapping, scoring, and decision logic
+     - module/service test with real collaborators or local fakes when behaviour depends on small internal collaboration but not framework/runtime wiring
+     - integration/API/database/component test when the behaviour is persistence, HTTP contract, framework wiring, rendering, routing, serialization, or cross-module integration
+     - e2e/manual verification when confidence depends on real user flow, deployment, visual interaction, auth, third-party behaviour, or environment-specific runtime behaviour
+   - If a planned unit test needs heavy mocking, stop and choose a smaller pure boundary, a local fake or in-memory boundary, a broader integration boundary, manual verification, or no new test.
+   - Reject new automated tests for README wording, docs phrasing, comments, labels, or copy unless the exact output is a public/runtime contract.
+   - Reject tests for static types, private implementation details, helper calls, call order, mock choreography, broad snapshots, regex phrase checks, refactors already covered by characterization, trivial wiring, file movement, or generated boilerplate unless the plan names a meaningful runtime/public contract or failure mode.
+   - Docs may be tested when they are genuinely runtime/public contracts, such as generated CLI help, public SDK docs, migration output, schema docs, install commands, or published examples consumed by users or automation.
+
+6. **Run mandatory coverage traceability check before output.**
    - Map each success criterion or strategy intent to at least one task.
-   - Map each success criterion or strategy intent to at least one Red-light scenario or documented verification posture.
-   - Confirm each Red-light scenario satisfies the shared Test Quality Rubric and `assets/test-quality-rubric.md`.
+   - Map each success criterion or strategy intent to at least one documented verification posture and verification target.
+   - Confirm each planned new automated test satisfies the shared Test Quality Rubric and `assets/test-quality-rubric.md`.
+   - Confirm each `no new test` posture has a concrete rationale and does not hide risky work.
    - Flag uncovered criteria and resolve gaps before finalizing.
    - Include the coverage traceability table in the plan header.
 
-6. **Output and implementation-plan backlink.**
+7. **Output and implementation-plan backlink.**
    - Write one combined file to `docs/plans/YYYY-MM-DD-<topic>.md`.
    - If the source spec contains an implementation-plan field/path:
      - update it only when environment/workflow allows.

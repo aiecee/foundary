@@ -29,13 +29,13 @@
 
 ## Coverage Traceability
 
-| Success Criterion | Covered By Task(s) | Red Light Scenario(s) |
-|---|---|---|
+| Success Criterion | Covered By Task(s) | Verification Posture | Verification Target | New Test? | Rationale |
+|---|---|---|---|---|---|
 
-## Test Quality Evidence
+## Verification Quality Evidence
 
-| Task | Requirement protected | Failure mode caught | Test category | Test level rationale | Mocks used | Runtime contract rationale |
-|---|---|---|---|---|---|---|
+| Task | Posture | Requirement/risk/contract | Failure mode | Boundary rationale | Mocks/fakes | Runtime contract rationale | No-new-test rationale |
+|---|---|---|---|---|---|---|---|
 
 ## Global Verification
 

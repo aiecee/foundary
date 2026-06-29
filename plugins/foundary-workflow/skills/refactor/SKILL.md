@@ -52,6 +52,7 @@ The strategy can be handed to `build` for direct execution when small and low-ri
 - Run clearly non-mutating characterization checks when safe.
 - Recommend focused characterization coverage when behaviour protection is weak.
 - Before recommending new characterization or regression coverage, read and apply `../../assets/test-quality-rubric.md`.
+- Do not recommend new tests unless the protected requirement/risk/contract and realistic failure mode can be named. Prefer existing coverage, characterization, manual verification, or no new test when a new automated test would be low value.
 - Produce strategy text in chat.
 - Ask before saving a strategy.
 
@@ -78,7 +79,7 @@ The strategy can be handed to `build` for direct execution when small and low-ri
 7. Choose a verification posture:
    - `characterization`: existing passing tests or manual checks protect behaviour.
    - `new regression`: add focused coverage before refactoring when valuable.
-   - `no new test`: allowed only for trivial, low-risk, or better-verified restructuring.
+   - `no new test`: allowed only for trivial, low-risk, manually verified, or better-verified restructuring.
 8. Recommend the next handoff:
    - `build` for small, scoped refactors with clear verification.
    - `plan` for multi-step, risky, cross-boundary, or sequencing-heavy refactors.

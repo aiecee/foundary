@@ -26,6 +26,7 @@ The strategy can be handed to `build` for direct execution when small and well-b
 - Make the guarded cases explicit before proposing edits.
 - Avoid redesigning the surrounding architecture.
 - Add focused tests around the risk or failure mode when valuable.
+- Do not recommend new tests unless the protected requirement/risk/contract and realistic failure mode can be named. Prefer existing coverage, characterization, manual verification, or no new test when a new automated test would be low value.
 - Verify both the normal path and the hardened path.
 - Recommend `scope-guard` after changes when drift risk is meaningful.
 
@@ -81,7 +82,7 @@ This is not a generic cleanup skill.
 7. Choose a verification posture:
    - `characterization`: existing checks protect the unchanged normal path.
    - `new regression`: add focused coverage for the risky or guarded path.
-   - `no new test`: allowed only for trivial, low-risk, or better-verified hardening.
+   - `no new test`: allowed only for trivial, low-risk, manually verified, or better-verified hardening.
 8. Recommend the next handoff:
    - `build` for localized hardening with clear normal-path and guarded-path verification.
    - `plan` for cross-boundary, compatibility-sensitive, or sequencing-heavy hardening.

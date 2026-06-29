@@ -58,24 +58,32 @@ Files the build agent must inspect before editing:
 
 - [Task-specific constraints inherited from spec]
 
-### Red Light
+### Verification Plan
 
 Apply `assets/test-quality-rubric.md` before filling this section.
-Apply the shared Test Quality Rubric before selecting the test level.
+Apply the shared Test Quality Rubric before choosing a verification posture or planning any new automated test.
 
-**Test Level:** unit | integration | e2e | manual verification
+**Verification posture:** new automated test | existing coverage / characterization | manual verification | no new test
 
-**Requirement protected:** [Business requirement, regression, risk, or runtime contract this test protects]
+**Decision rationale:** [Why this posture is the right proof for the task; `no new test` must be justified, not defaulted]
 
-**Failure mode caught:** [Realistic broken behaviour this test would fail on]
+**Boundary selected:** pure input/output | module/service | integration/API/database/component | e2e/manual | none
 
-**Test category:** business requirement | regression / known bug | risk / edge case | runtime contract
+**Requirement/risk/contract protected:** [Business requirement, regression, risk, runtime/public contract, or `none` with rationale]
 
-**Test level rationale:** [Why this level is the smallest meaningful verification level]
+**Realistic failure mode:** [Broken behaviour this verification would catch, or why no realistic automated failure mode is worth new coverage]
 
-**Mocks used:** none | [mock name and reason each mock is necessary]
+**Why not a different boundary:** [Why smaller/broader/manual/no-new-test posture is not the better fit]
+
+**Existing verification considered:** [Existing tests/checks/manual signals and why they are sufficient or insufficient]
+
+**Mocks/fakes:** none | [mock/fake name and reason each is necessary; heavy mocks require external-boundary rationale]
 
 **Runtime contract rationale:** none | [runtime/public boundary and consumer when asserting data shape]
+
+#### New Automated Test Details
+
+Complete this subsection only when verification posture is `new automated test`.
 
 **Test command before implementation:**
 
@@ -83,15 +91,19 @@ Apply the shared Test Quality Rubric before selecting the test level.
 [command]
 ```
 
-### Scenarios
+**Scenarios:**
 
 - Given [context]
   When [action]
   Then [expected outcome]
 
-### Expected Failure Before Green
+**Expected failure before green:**
 
 - [Specific failing assertion, missing behaviour, or expected error]
+
+**Maintenance rationale:**
+
+- [Why the test is cheaper to maintain than the risk it protects and would remain valuable after rewrite]
 
 ### Verification Target
 
@@ -126,7 +138,7 @@ Forbidden refactors:
 
 ### Task Verification
 
-Run:
+Run or perform:
 
 ```
 [task-specific command]
@@ -150,6 +162,6 @@ Do not begin the next task unless explicitly instructed.
 ### Done Criteria
 
 - [ ] Behaviour implemented
-- [ ] Tests pass
+- [ ] Declared verification passes
 - [ ] Scope remained bounded
 - [ ] Verification completed

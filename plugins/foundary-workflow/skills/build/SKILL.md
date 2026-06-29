@@ -10,9 +10,12 @@ compatibility: 'Requires: filesystem access and ability to run project test/lint
 
 Load an implementation-ready plan (typically `docs/plans/YYYY-MM-DD-<topic>.md`) or an approved code-change strategy, validate that the source and current work are executable, then execute in order.
 
-For full implementation plans, use:
+For full implementation plans, use each task's verification posture:
 
-Red light -> Green light -> Refactor -> Verification -> Feedback.
+- `new automated test`: Red light -> Green light -> Refactor -> Verification -> Feedback.
+- `existing coverage / characterization`: Existing check -> Green light -> Refactor -> Verification -> Feedback.
+- `manual verification`: Green light -> Refactor -> Declared manual/runtime verification -> Feedback.
+- `no new test`: Rationale -> Green light -> Refactor -> smallest meaningful non-test verification -> Feedback.
 
 For approved strategies, use the strategy's verification posture instead of mandatory new Red-first tests.
 
@@ -70,7 +73,10 @@ A plan is execution-ready when:
 - tasks are ordered
 - each task has a behavior-focused name
 - each task lists concrete files or clearly identified likely locations
-- each task includes explicit Red light, Green light, and Refactor sections
+- each task includes explicit Verification Plan, Green light, and Refactor sections
+- each task declares one verification posture: `new automated test`, `existing coverage / characterization`, `manual verification`, or `no new test`
+- `new automated test` tasks include Red-light test command, scenarios, expected failure, and test-quality evidence
+- `existing coverage / characterization`, `manual verification`, and `no new test` tasks include rationale and a concrete verification target instead of invented Red-light tests
 - verification requirements are explicit when broader checks are required
 
 An approved strategy is execution-ready when:
@@ -98,9 +104,16 @@ Allowed strategy verification postures:
 For each task in order:
 
 1. Mark task as in-progress.
-2. For a full implementation plan, execute Red light first.
+2. For a full implementation plan, follow the task's declared verification posture.
 
-Red light requirements:
+Full-plan verification posture requirements:
+
+- `new automated test`: write the focused failing test first, confirm meaningful failure, then implement.
+- `existing coverage / characterization`: run or cite the existing check before implementation when practical, then verify after implementation.
+- `manual verification`: implement first, then perform the declared manual/runtime check after implementation.
+- `no new test`: document the planned rationale before implementation and run the smallest meaningful non-test verification after implementation.
+
+New automated test requirements:
 
 - Before adding or modifying tests, read and apply `../../assets/test-quality-rubric.md`.
 - Write only the failing tests for the current task behavior.
@@ -110,6 +123,8 @@ Red light requirements:
 - Stop and ask whether to update the plan or spec if the planned or generated test is ornamental, mock-heavy without external-boundary rationale, shape-only without runtime/public contract rationale, focused on implementation-detail assertions, or missing a real failure mode.
 - Setup failures (compile/import/config/mock issues) must be fixed before proceeding.
 - If Red-first is impractical for a behavior, stop and ask how to proceed (mock/stub, documented exception, or manual verification).
+
+For `existing coverage / characterization`, `manual verification`, or `no new test`, do not add new tests unless the plan is updated. If the declared posture is not credible for the risk, stop and ask whether to update the plan or spec.
 
 For an approved strategy, follow the declared verification posture:
 
@@ -175,7 +190,8 @@ Then stop.
 ## Rules
 
 - Do not skip or reorder tasks unless explicitly instructed by the user.
-- For full plans, do not run Green before Red.
+- For full plans, do not run Green before Red when the current task posture is `new automated test`.
+- For full plans, do not invent Red-first tests when the current task posture is `existing coverage / characterization`, `manual verification`, or `no new test`.
 - For strategies, do not implement before satisfying the declared verification posture.
 - Do not expand scope beyond the current task.
 - Default to one implementation pass and one Refactor pass.
@@ -190,7 +206,8 @@ Then stop.
 - implementation would require guessing
 - current task is not execution-ready
 - verification fails repeatedly without clear cause
-- current Red test or strategy verification posture would create low-value tests instead of protecting meaningful behaviour
+- current planned/generated test or strategy verification posture would create low-value tests instead of protecting meaningful behaviour
+- current task posture is missing, not credible for the risk, or conflicts with the declared verification target
 - repo reality conflicts materially with the plan or strategy
 - scope would need to expand beyond the current task
 
