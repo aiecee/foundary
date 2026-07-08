@@ -1,0 +1,15 @@
+{
+  "name": "foundary-git",
+  "version": "0.1.0",
+  "description": "Foundary git skills for status checks, diff review, conflict resolution, change splitting, and scoped Conventional Commits.",
+  "author": {
+    "name": "Foundary"
+  },
+  "keywords": [
+    "git",
+    "review",
+    "commit",
+    "conflicts",
+    "status"
+  ]
+}
