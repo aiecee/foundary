@@ -6,9 +6,7 @@ compatibility: 'Requires: git and filesystem access. May inspect repository cont
 
 # Migrate
 
-Create a strategy for deliberate contract migration. This skill shapes the migration before implementation; it does not produce a normal Foundary implementation plan.
-
-The strategy can be handed to `build` for direct execution when small and mechanical, or to `plan` when call sites, compatibility, rollout, or verification need decomposition.
+Create a strategy for deliberate contract migration. This skill shapes the migration before implementation.
 
 ## Required outcomes
 
@@ -27,7 +25,6 @@ The strategy can be handed to `build` for direct execution when small and mechan
 - Decide whether backward compatibility or transition support is required.
 - Separate mechanical updates from semantic behaviour changes.
 - Update tests, docs, config, and examples when they are part of the migrated contract.
-- Do not recommend new tests unless the protected requirement/risk/contract and realistic failure mode can be named. Prefer existing coverage, characterization, manual verification, or no new test when a new automated test would be low value.
 - Verify the old assumption is removed or intentionally supported.
 - Recommend `scope-guard` after changes when drift risk is meaningful.
 
@@ -43,11 +40,11 @@ The strategy can be handed to `build` for direct execution when small and mechan
 
 ## Allowed
 
-- Read source, tests, docs, manifests, config, schemas, examples, and history.
+- Read source, tests, docs, manifests, config, schemas, examples, strategies, and history.
 - Search for call sites, imports, references, and integration points.
 - Run clearly non-mutating checks when safe.
 - Recommend compatibility and rollout posture.
-- Before recommending new migration coverage, read and apply `../../assets/test-quality-rubric.md`.
+- Before recommending new migration coverage, read and apply `../test-rubric/SKILL.md`.
 - Produce strategy text in chat.
 - Ask before saving a strategy.
 
@@ -84,15 +81,12 @@ The strategy can be handed to `build` for direct execution when small and mechan
 8. Choose a verification posture:
    - `characterization`: existing tests or manual checks prove migrated behaviour remains correct.
    - `new regression`: add focused coverage for the target contract or compatibility path.
-   - `no new test`: allowed only for trivial, mechanical, low-risk, manually verified, or better-verified migrations.
-9. Recommend the next handoff:
-   - `build` for small mechanical migrations with clear verification.
-   - `plan` for broad, risky, compatibility-sensitive, or multi-phase migrations.
-   - `test-review` when migration protection is weak or unclear.
+   - `no new test`: allowed only for trivial, mechanical, low-risk migrations.
+9. Recommend the next step: plan, implement directly, ask user, or investigate further.
 
 ## Readiness gate
 
-A Migration Strategy is ready for `build` only when:
+A Migration Strategy is ready for implementation only when:
 
 - source and target contracts are explicit
 - call-site inventory is narrow and complete enough for the requested scope
@@ -101,7 +95,7 @@ A Migration Strategy is ready for `build` only when:
 - rollback/deployment notes are addressed
 - old-contract removal or support can be verified
 
-Send the strategy to `plan` when the migration is broad, multi-phase, compatibility-sensitive, deployment-sensitive, or includes semantic behaviour changes.
+Recommend planning before implementation when the migration is broad, multi-phase, compatibility-sensitive, deployment-sensitive, or includes semantic behaviour changes.
 
 ## Stop immediately when
 
@@ -114,11 +108,7 @@ Send the strategy to `plan` when the migration is broad, multi-phase, compatibil
 
 ## Persistence
 
-Ask before saving a strategy. If the user wants it saved, use:
-
-`docs/plans/YYYY-MM-DD-<topic>-migration-strategy.md`
-
-Chat output is always acceptable.
+Chat output is the default. Ask before saving a strategy, and use the location the user requests.
 
 ## Output format
 
@@ -164,7 +154,8 @@ Use this structure:
 - Old-contract removal/support verification:
 
 ## Handoff Recommendation
-- build | plan | test-review:
+- Ready for next step: yes | no
+- Recommended next step: plan | implement directly | ask user | investigate further
 - Reason:
 
 ## Out Of Scope

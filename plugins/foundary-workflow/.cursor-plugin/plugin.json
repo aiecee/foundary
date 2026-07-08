@@ -1,0 +1,15 @@
+{
+  "name": "foundary-workflow",
+  "version": "0.1.0",
+  "description": "Foundary workflow skills for investigation, design strategy, strategy-first change shaping, compact planning, scope guarding, and test-quality guidance.",
+  "author": {
+    "name": "Foundary"
+  },
+  "keywords": [
+    "workflow",
+    "planning",
+    "strategy",
+    "testing",
+    "scope"
+  ]
+}

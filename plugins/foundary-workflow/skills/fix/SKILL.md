@@ -6,9 +6,7 @@ compatibility: 'Requires: git and filesystem access. May run targeted tests or r
 
 # Fix
 
-Create a focused bug-fix strategy. This skill shapes the fix before implementation; it does not produce a normal Foundary implementation plan.
-
-The strategy can be handed to `build` for direct execution when the failure and scope are clear, or to `plan` when the fix needs decomposition.
+Create a focused bug-fix strategy. This skill shapes the fix before implementation.
 
 ## Required outcomes
 
@@ -26,15 +24,14 @@ The strategy can be handed to `build` for direct execution when the failure and 
 - Prefer the smallest fix that addresses the root cause.
 - Avoid surrounding rewrites unless necessary for the fix.
 - Add or update regression coverage when valuable.
-- Before recommending regression coverage, read and apply `../../assets/test-quality-rubric.md`.
-- Do not recommend new tests unless the protected requirement/risk/contract and realistic failure mode can be named. Prefer existing coverage, characterization, manual verification, or no new test when a new automated test would be low value.
+- Before recommending regression coverage, read and apply `../test-rubric/SKILL.md`.
 - Verify the fix against the original failure mode.
 - Do not weaken tests unless the test is proven wrong and the corrected test still protects meaningful behaviour.
 - Recommend `scope-guard` after changes when drift risk is meaningful.
 
 ## Allowed
 
-- Read relevant source, tests, docs, logs, plans, and git history.
+- Read relevant source, tests, docs, logs, strategies, and git history.
 - Run targeted reproduction commands or failing tests when safe.
 - Inspect recent changes that may explain the regression.
 - Recommend focused regression coverage.
@@ -62,19 +59,16 @@ observe -> reproduce -> isolate -> minimal fix -> regression decision -> verify
 3. Reproduce with the narrowest useful command, or document why reproduction is unavailable.
 4. Isolate likely cause using evidence from code, tests, logs, history, or runtime behaviour.
 5. Define the minimal fix boundary and affected files or likely locations.
-6. Read `../../assets/test-quality-rubric.md`, then decide whether regression coverage is valuable and at which boundary.
+6. Read and apply `../test-rubric/SKILL.md`, then decide whether regression coverage is valuable and at which boundary.
 7. Choose a verification posture:
    - `existing red`: existing failing test, command, reproduction, runtime error, or reported behaviour demonstrates the problem.
    - `new regression`: add focused coverage for a valuable failure mode.
-   - `no new test`: allowed only for trivial, low-risk, manually verified, or better-verified fixes.
-8. Recommend the next handoff:
-   - `build` for localized fixes with clear verification.
-   - `plan` for broad, multi-area, or sequencing-heavy fixes.
-   - `test-review` when proposed or existing regression protection is suspect.
+   - `no new test`: allowed only for trivial, low-risk, or better-verified fixes.
+8. Recommend the next step: plan, implement directly, ask user, or investigate further.
 
 ## Readiness gate
 
-A Fix Strategy is ready for `build` only when:
+A Fix Strategy is ready for implementation only when:
 
 - the symptom and original failure mode are explicit
 - reproduction exists, or reproduction absence is justified and the failure is otherwise unambiguous
@@ -82,7 +76,7 @@ A Fix Strategy is ready for `build` only when:
 - fix boundary is narrow
 - verification checks the original failure mode
 
-Send the strategy to `plan` when the fix crosses multiple subsystems, requires sequencing, needs compatibility decisions, or cannot be safely localized.
+Recommend planning before implementation when the fix crosses multiple subsystems, requires sequencing, needs compatibility decisions, or cannot be safely localized.
 
 ## Stop immediately when
 
@@ -95,11 +89,7 @@ Send the strategy to `plan` when the fix crosses multiple subsystems, requires s
 
 ## Persistence
 
-Ask before saving a strategy. If the user wants it saved, use:
-
-`docs/plans/YYYY-MM-DD-<topic>-fix-strategy.md`
-
-Chat output is always acceptable.
+Chat output is the default. Ask before saving a strategy, and use the location the user requests.
 
 ## Output format
 
@@ -139,7 +129,8 @@ Use this structure:
 - Must verify original failure mode by:
 
 ## Handoff Recommendation
-- build | plan | test-review:
+- Ready for next step: yes | no
+- Recommended next step: plan | implement directly | ask user | investigate further
 - Reason:
 
 ## Out Of Scope

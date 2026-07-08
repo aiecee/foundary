@@ -1,23 +1,24 @@
 # Foundary
 
-Foundary is a Codex plugin marketplace for deterministic software delivery with a strict workflow pipeline, workflow-owned quality checks, and dedicated git support:
+Foundary is a Codex plugin marketplace for strategy-first software delivery with workflow-owned guardrails and dedicated git support:
 
-`investigate -> spec -> plan -> build` + `test-review` + git support skills (`status`, `review`, `resolve`, `split`, `commit`)
+`investigate` + `design` + focused strategies (`fix`, `refactor`, `harden`, `migrate`) + `plan` + `scope-guard` + `test-rubric` + git support skills (`status`, `review`, `resolve`, `split`, `commit`)
 
-The repository is intentionally Codex-only. It exposes two local plugins through the repo marketplace:
+The repository is Codex-first and Cursor-compatible. It exposes two local plugins through the repo marketplace:
 
-- `foundary-workflow`: `investigate`, `spec`, `plan`, `build`, and `test-review` skills.
+- `foundary-workflow`: investigation, design, strategy, planning, scope guard, and test rubric skills.
 - `foundary-git`: `status`, `review`, `resolve`, `split`, and `commit` skills.
 
 ## Architecture
 
-Foundary follows the Codex plugin structure:
+Foundary follows the Codex plugin structure and includes Cursor plugin manifests:
 
 - `AGENTS.md` is the portable global Codex defaults file. It is stored in the repo for versioning and should be symlinked into the global Codex config directory.
 - `.agents/plugins/marketplace.json` defines the repo marketplace.
-- `plugins/foundary-workflow` contains investigation, planning, build execution, and workflow-owned test quality review skills.
+- `.cursor-plugin/marketplace.json` defines the Cursor marketplace.
+- `plugins/foundary-workflow` contains investigation, design, strategy, compact planning, scope guard, and workflow-owned test quality guidance skills.
 - `plugins/foundary-git` contains git analysis and commit workflow skills.
-- Each plugin owns its `.codex-plugin/plugin.json` manifest and `skills/` directory.
+- Each plugin owns its `.codex-plugin/plugin.json`, `.cursor-plugin/plugin.json`, and `skills/` directory.
 
 ## Repository layout
 
@@ -28,19 +29,28 @@ foundary/
 ├── .agents/
 │   └── plugins/
 │       └── marketplace.json
+├── .cursor-plugin/
+│   └── marketplace.json
 └── plugins/
     ├── foundary-workflow/
     │   ├── .codex-plugin/
     │   │   └── plugin.json
+    │   ├── .cursor-plugin/
+    │   │   └── plugin.json
     │   └── skills/
+    │       ├── fix/
+    │       ├── refactor/
+    │       ├── harden/
+    │       ├── migrate/
+    │       ├── design/
     │       ├── investigate/
-    │       ├── spec/
     │       ├── plan/
-    │       ├── build/
-    │       └── test-review/
-    │           └── assets/
+    │       ├── scope-guard/
+    │       └── test-rubric/
     └── foundary-git/
         ├── .codex-plugin/
+        │   └── plugin.json
+        ├── .cursor-plugin/
         │   └── plugin.json
         └── skills/
             ├── status/
@@ -85,14 +95,26 @@ codex plugin marketplace add .
 
 Run that command from the repository root. Codex reads `.agents/plugins/marketplace.json` and installs the local plugins from `./plugins/foundary-workflow` and `./plugins/foundary-git`.
 
+### Cursor plugin marketplace
+
+Start the Cursor Agent CLI from this repository, then run these as Agent chat slash commands:
+
+```text
+/plugin marketplace add /Users/frontendengineer/projects/foundary
+/plugin install foundary-workflow@foundary
+/plugin install foundary-git@foundary
+```
+
+These are typed inside the Agent CLI session, not run as shell commands. Cursor reads `.cursor-plugin/marketplace.json` and installs the local plugins from `./plugins/foundary-workflow` and `./plugins/foundary-git`.
+
 ## Plugins
 
-- `foundary-workflow` guides investigation, design specs, implementation plans, plan execution, and read-only test quality review.
+- `foundary-workflow` guides investigation, design decisions, focused change strategies, compact implementation plans, scope checks, and test-quality decisions.
 - `foundary-git` supports repository status checks, diff review, conflict resolution, change splitting, and scoped Conventional Commits.
 
-## Current skills
+## Core v2 skills
 
-- `foundary-workflow`: `investigate`, `spec`, `plan`, `build`, `test-review`
+- `foundary-workflow`: `investigate`, `design`, `fix`, `refactor`, `harden`, `migrate`, `plan`, `scope-guard`, `test-rubric`
 - `foundary-git`: `status`, `review`, `resolve`, `split`, `commit`
 
-Workflow-owned test quality checks live in `foundary-workflow`. Git skills stay focused on repository state, diff readiness, conflict resolution, splitting, and commits.
+Workflow-owned test-quality guidance lives in `test-rubric`. Git skills stay focused on repository state, diff readiness, conflict resolution, splitting, and commits.

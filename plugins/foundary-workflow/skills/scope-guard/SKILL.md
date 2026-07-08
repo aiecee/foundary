@@ -1,6 +1,6 @@
 ---
 name: scope-guard
-description: Strict read-only guardrail review that checks whether proposed or actual changes stayed inside an agreed scope. Use before build, during build when drift is suspected, or before git review and commit.
+description: Strict read-only guardrail review that checks whether proposed or actual changes stayed inside an agreed scope. Use before implementation, when drift is suspected, or before git review and commit.
 compatibility: 'Requires: git and filesystem access. May run clearly non-mutating inspection commands when safe.'
 ---
 
@@ -8,7 +8,7 @@ compatibility: 'Requires: git and filesystem access. May run clearly non-mutatin
 
 Check whether proposed or actual changes stayed inside the agreed scope. This skill is strict and read-only.
 
-Use it before `build`, during `build` if drift is suspected, or before git review and commit. It does not fix drift.
+Use it before implementation, when drift is suspected, or before git review and commit. It does not fix drift.
 
 ## Required outcomes
 
@@ -24,7 +24,7 @@ Use it before `build`, during `build` if drift is suspected, or before git revie
 - Never stage, commit, push, reset, stash, amend, or otherwise mutate git state.
 - Never mutate external systems.
 - Prefer evidence over assumption.
-- Judge changes against the approved request, spec, strategy, plan, or task boundary.
+- Judge changes against the approved request, strategy, task boundary, or explicit scope.
 - Flag scope drift even when the change seems useful.
 - Do not silently repair drift.
 - If scope context is partial, report confidence and the missing context.
@@ -49,8 +49,7 @@ Use it before `build`, during `build` if drift is suspected, or before git revie
 Use the narrowest available scope source:
 
 - user-stated scope
-- approved strategy
-- approved Foundary spec or plan
+- approved strategy or task boundary
 - current task boundary
 - explicit file list or module boundary
 
@@ -78,7 +77,7 @@ If either scope source or change baseline is missing, report `NO SCOPE BASELINE`
 - opportunistic refactors
 - unapproved dependency changes
 - formatting-only churn mixed into semantic work
-- architecture changes not present in the spec, plan, or strategy
+- architecture changes not present in the approved scope or strategy
 - tests rewritten to match implementation rather than protect behaviour
 - broad edits that exceed the stated request
 - generated or snapshot changes without an approved reason
@@ -95,7 +94,7 @@ If either scope source or change baseline is missing, report `NO SCOPE BASELINE`
    - ask for scope approval
    - split unrelated work
    - remove drift manually
-   - update the strategy or plan before continuing
+   - update the strategy before continuing
 6. Report findings without editing.
 
 ## Readiness gate
@@ -141,7 +140,7 @@ Lead with out-of-scope or suspicious findings when any exist. Use this structure
 ## Acceptable Incidental Changes
 ## Out-of-Scope or Suspicious Changes
 ## Required Follow-Up Action
-- proceed | ask for scope approval | split unrelated work | remove drift manually | update strategy/plan
+- proceed | ask for scope approval | split unrelated work | remove drift manually | update strategy
 
 ## Confidence
 

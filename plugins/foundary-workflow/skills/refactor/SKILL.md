@@ -6,9 +6,7 @@ compatibility: 'Requires: git and filesystem access. May inspect repository cont
 
 # Refactor
 
-Create a controlled strategy for behaviour-preserving code restructuring. This skill shapes the change before implementation; it does not produce a normal Foundary implementation plan.
-
-The strategy can be handed to `build` for direct execution when small and low-risk, or to `plan` when sequencing, scope, or verification requires decomposition.
+Create a controlled strategy for behaviour-preserving code restructuring. This skill shapes the change before implementation.
 
 ## Required outcomes
 
@@ -16,7 +14,7 @@ The strategy can be handed to `build` for direct execution when small and low-ri
 - Name the behaviour, public contracts, runtime contracts, observable outputs, and callers that must remain unchanged.
 - Identify existing protection and protection gaps.
 - Define a narrow scope boundary and explicit out-of-scope changes.
-- Produce a Refactor Strategy with enough evidence for `build` or `plan` handoff.
+- Produce a Refactor Strategy with enough evidence for implementation or planning.
 
 ## Core rules
 
@@ -27,7 +25,7 @@ The strategy can be handed to `build` for direct execution when small and low-ri
 - Prefer small, reversible transformations.
 - Avoid opportunistic architecture redesign.
 - Avoid broad formatting churn unless formatting is the explicit requested change.
-- Recommend `test-review` first when existing behavioural protection is uncertain.
+- Recommend stronger characterization or planning when existing behavioural protection is uncertain.
 - Recommend `scope-guard` after changes when drift risk is meaningful.
 
 ## Valid refactors
@@ -48,11 +46,10 @@ The strategy can be handed to `build` for direct execution when small and low-ri
 
 ## Allowed
 
-- Read relevant source, tests, docs, plans, and history.
+- Read relevant source, tests, docs, strategies, and history.
 - Run clearly non-mutating characterization checks when safe.
 - Recommend focused characterization coverage when behaviour protection is weak.
-- Before recommending new characterization or regression coverage, read and apply `../../assets/test-quality-rubric.md`.
-- Do not recommend new tests unless the protected requirement/risk/contract and realistic failure mode can be named. Prefer existing coverage, characterization, manual verification, or no new test when a new automated test would be low value.
+- Before recommending new characterization or regression coverage, read and apply `../test-rubric/SKILL.md`.
 - Produce strategy text in chat.
 - Ask before saving a strategy.
 
@@ -79,22 +76,19 @@ The strategy can be handed to `build` for direct execution when small and low-ri
 7. Choose a verification posture:
    - `characterization`: existing passing tests or manual checks protect behaviour.
    - `new regression`: add focused coverage before refactoring when valuable.
-   - `no new test`: allowed only for trivial, low-risk, manually verified, or better-verified restructuring.
-8. Recommend the next handoff:
-   - `build` for small, scoped refactors with clear verification.
-   - `plan` for multi-step, risky, cross-boundary, or sequencing-heavy refactors.
-   - `test-review` when protection is weak or unclear.
+   - `no new test`: allowed only for trivial, low-risk, or better-verified restructuring.
+8. Recommend the next step: plan, implement directly, ask user, or investigate further.
 
 ## Readiness gate
 
-A Refactor Strategy is ready for `build` only when:
+A Refactor Strategy is ready for implementation only when:
 
 - preserved behaviour and public/runtime contracts are explicit
 - proposed steps are small and reversible
 - verification posture is credible for the risk
 - no feature, fix, hardening, migration, dependency, or cleanup work is mixed in
 
-Send the strategy to `plan` when the refactor spans multiple boundaries, requires ordering decisions, changes public surfaces, or needs stronger decomposition.
+Recommend planning before implementation when the refactor spans multiple boundaries, requires ordering decisions, changes public surfaces, or needs stronger sequencing.
 
 ## Stop immediately when
 
@@ -106,11 +100,7 @@ Send the strategy to `plan` when the refactor spans multiple boundaries, require
 
 ## Persistence
 
-Ask before saving a strategy. If the user wants it saved, use:
-
-`docs/plans/YYYY-MM-DD-<topic>-refactor-strategy.md`
-
-Chat output is always acceptable.
+Chat output is the default. Ask before saving a strategy, and use the location the user requests.
 
 ## Output format
 
@@ -146,10 +136,11 @@ Use this structure:
 - Why this is enough:
 
 ## Handoff Recommendation
-- build | plan | test-review:
+- Ready for next step: yes | no
+- Recommended next step: plan | implement directly | ask user | investigate further
 - Reason:
 
 ## Out Of Scope
 ```
 
-Keep the strategy concise enough to guide implementation without becoming a full Red/Green/Refactor plan.
+Keep the strategy concise enough to guide implementation without becoming a full task breakdown.

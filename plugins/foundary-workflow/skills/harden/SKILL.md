@@ -6,9 +6,7 @@ compatibility: 'Requires: git and filesystem access. May inspect repository cont
 
 # Harden
 
-Create a strategy for making existing behaviour safer or more robust without changing the intended happy path. This skill shapes the change before implementation; it does not produce a normal Foundary implementation plan.
-
-The strategy can be handed to `build` for direct execution when small and well-bounded, or to `plan` when risk, sequencing, or compatibility needs decomposition.
+Create a strategy for making existing behaviour safer or more robust without changing the intended happy path. This skill shapes the change before implementation.
 
 ## Required outcomes
 
@@ -26,7 +24,6 @@ The strategy can be handed to `build` for direct execution when small and well-b
 - Make the guarded cases explicit before proposing edits.
 - Avoid redesigning the surrounding architecture.
 - Add focused tests around the risk or failure mode when valuable.
-- Do not recommend new tests unless the protected requirement/risk/contract and realistic failure mode can be named. Prefer existing coverage, characterization, manual verification, or no new test when a new automated test would be low value.
 - Verify both the normal path and the hardened path.
 - Recommend `scope-guard` after changes when drift risk is meaningful.
 
@@ -45,11 +42,11 @@ This is not a generic cleanup skill.
 
 ## Allowed
 
-- Read relevant source, tests, docs, plans, and history.
+- Read relevant source, tests, docs, strategies, and history.
 - Inspect callers and runtime contracts for compatibility concerns.
 - Run clearly non-mutating checks when safe.
 - Recommend focused normal-path and hardened-path coverage.
-- Before recommending new normal-path or hardened-path coverage, read and apply `../../assets/test-quality-rubric.md`.
+- Before recommending new normal-path or hardened-path coverage, read and apply `../test-rubric/SKILL.md`.
 - Produce strategy text in chat.
 - Ask before saving a strategy.
 
@@ -82,15 +79,12 @@ This is not a generic cleanup skill.
 7. Choose a verification posture:
    - `characterization`: existing checks protect the unchanged normal path.
    - `new regression`: add focused coverage for the risky or guarded path.
-   - `no new test`: allowed only for trivial, low-risk, manually verified, or better-verified hardening.
-8. Recommend the next handoff:
-   - `build` for localized hardening with clear normal-path and guarded-path verification.
-   - `plan` for cross-boundary, compatibility-sensitive, or sequencing-heavy hardening.
-   - `test-review` when protection is weak or unclear.
+   - `no new test`: allowed only for trivial, low-risk, or better-verified hardening.
+8. Recommend the next step: plan, implement directly, ask user, or investigate further.
 
 ## Readiness gate
 
-A Hardening Strategy is ready for `build` only when:
+A Hardening Strategy is ready for implementation only when:
 
 - the risk is specific
 - the happy path is explicitly unchanged
@@ -98,7 +92,7 @@ A Hardening Strategy is ready for `build` only when:
 - compatibility concerns are checked or explicitly absent
 - verification covers both normal and hardened paths
 
-Send the strategy to `plan` when hardening affects public contracts, multiple callers, permissions, data integrity, deployment sequencing, or compatibility-sensitive behaviour.
+Recommend planning before implementation when hardening affects public contracts, multiple callers, permissions, data integrity, deployment sequencing, or compatibility-sensitive behaviour.
 
 ## Stop immediately when
 
@@ -111,11 +105,7 @@ Send the strategy to `plan` when hardening affects public contracts, multiple ca
 
 ## Persistence
 
-Ask before saving a strategy. If the user wants it saved, use:
-
-`docs/plans/YYYY-MM-DD-<topic>-hardening-strategy.md`
-
-Chat output is always acceptable.
+Chat output is the default. Ask before saving a strategy, and use the location the user requests.
 
 ## Output format
 
@@ -157,7 +147,8 @@ Use this structure:
 - Hardened path:
 
 ## Handoff Recommendation
-- build | plan | test-review:
+- Ready for next step: yes | no
+- Recommended next step: plan | implement directly | ask user | investigate further
 - Reason:
 
 ## Out Of Scope
