@@ -1,0 +1,20 @@
+{
+  "name": "foundary",
+  "owner": {
+    "name": "Foundary"
+  },
+  "description": "Foundary Claude Code plugin marketplace for workflow and git skills",
+  "version": "0.1.0",
+  "plugins": [
+    {
+      "name": "foundary-workflow",
+      "source": "./plugins/foundary-workflow",
+      "description": "Foundary workflow skills for investigation, design strategy, strategy-first change shaping, compact planning, scope guarding, and test-quality guidance."
+    },
+    {
+      "name": "foundary-git",
+      "source": "./plugins/foundary-git",
+      "description": "Foundary git skills for status checks, diff review, conflict resolution, change splitting, and scoped Conventional Commits."
+    }
+  ]
+}

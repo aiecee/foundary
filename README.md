@@ -4,21 +4,22 @@ Foundary is a Codex plugin marketplace for strategy-first software delivery with
 
 `investigate` + `design` + focused strategies (`fix`, `refactor`, `harden`, `migrate`) + `plan` + `scope-guard` + `test-rubric` + git support skills (`status`, `review`, `resolve`, `split`, `commit`)
 
-The repository is Codex-first and Cursor-compatible. It exposes two local plugins through the repo marketplace:
+The repository is Codex-first, Cursor-compatible, and Claude-compatible. It exposes two local plugins through the repo marketplace:
 
 - `foundary-workflow`: investigation, design, strategy, planning, scope guard, and test rubric skills.
 - `foundary-git`: `status`, `review`, `resolve`, `split`, and `commit` skills.
 
 ## Architecture
 
-Foundary follows the Codex plugin structure and includes Cursor plugin manifests:
+Foundary follows the Codex plugin structure and includes Cursor and Claude plugin manifests:
 
 - `AGENTS.md` is the portable global Codex defaults file. It is stored in the repo for versioning and should be symlinked into the global Codex config directory.
 - `.agents/plugins/marketplace.json` defines the repo marketplace.
 - `.cursor-plugin/marketplace.json` defines the Cursor marketplace.
+- `.claude-plugin/marketplace.json` defines the Claude Code marketplace.
 - `plugins/foundary-workflow` contains investigation, design, strategy, compact planning, scope guard, and workflow-owned test quality guidance skills.
 - `plugins/foundary-git` contains git analysis and commit workflow skills.
-- Each plugin owns its `.codex-plugin/plugin.json`, `.cursor-plugin/plugin.json`, and `skills/` directory.
+- Each plugin owns its `.codex-plugin/plugin.json`, `.cursor-plugin/plugin.json`, `.claude-plugin/plugin.json`, and `skills/` directory.
 
 ## Repository layout
 
@@ -31,11 +32,15 @@ foundary/
 │       └── marketplace.json
 ├── .cursor-plugin/
 │   └── marketplace.json
+├── .claude-plugin/
+│   └── marketplace.json
 └── plugins/
     ├── foundary-workflow/
     │   ├── .codex-plugin/
     │   │   └── plugin.json
     │   ├── .cursor-plugin/
+    │   │   └── plugin.json
+    │   ├── .claude-plugin/
     │   │   └── plugin.json
     │   └── skills/
     │       ├── fix/
@@ -51,6 +56,8 @@ foundary/
         ├── .codex-plugin/
         │   └── plugin.json
         ├── .cursor-plugin/
+        │   └── plugin.json
+        ├── .claude-plugin/
         │   └── plugin.json
         └── skills/
             ├── status/
@@ -106,6 +113,27 @@ Start the Cursor Agent CLI from this repository, then run these as Agent chat sl
 ```
 
 These are typed inside the Agent CLI session, not run as shell commands. Cursor reads `.cursor-plugin/marketplace.json` and installs the local plugins from `./plugins/foundary-workflow` and `./plugins/foundary-git`.
+
+### Claude Code plugin marketplace
+
+Start Claude Code from this repository, then run these as Claude Code chat slash commands:
+
+```text
+/plugin marketplace add /Users/frontendengineer/projects/foundary
+/plugin install foundary-workflow@foundary
+/plugin install foundary-git@foundary
+/reload-plugins
+```
+
+These are typed inside the Claude Code session, not run as shell commands. Claude Code reads `.claude-plugin/marketplace.json` and installs the local plugins from `./plugins/foundary-workflow` and `./plugins/foundary-git`.
+
+You can also install from the shell:
+
+```bash
+claude plugin marketplace add /Users/frontendengineer/projects/foundary
+claude plugin install foundary-workflow@foundary
+claude plugin install foundary-git@foundary
+```
 
 ## Plugins
 
