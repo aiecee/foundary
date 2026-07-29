@@ -1,12 +1,12 @@
 ---
 name: design
-description: Creates a compact Design Strategy for ambiguous or architectural work before implementation planning. Use when multiple approaches, ownership boundaries, public contracts, data shapes, user-visible behaviour, or trade-offs need deciding.
+description: Creates a concise, decision-complete Design Strategy for ambiguous or architectural work before implementation planning. Use when multiple approaches, ownership boundaries, public contracts, data shapes, user-visible behaviour, or trade-offs need deciding.
 compatibility: 'Requires: git and filesystem access. May inspect repository context and read test-rubric when testing implications matter.'
 ---
 
 # Design
 
-Create a compact design strategy for work that needs a decision before implementation planning.
+Create a concise design strategy that preserves the evidence needed to make material decisions before implementation planning.
 
 This skill shapes the change before planning or implementation. It does not edit files, stage changes, commit, or create a design document unless the user asks.
 
@@ -23,7 +23,7 @@ This skill shapes the change before planning or implementation. It does not edit
 ## Core rules
 
 - Use this when implementation planning would require guessing about architecture, ownership, contracts, or product behaviour.
-- Keep the strategy as small as the decision allows.
+- Keep the strategy as small as the decision allows; remove repetition, not material decision evidence.
 - Prefer existing repo patterns over new abstractions.
 - Prefer the simplest approach that satisfies the goal.
 - Do not turn design into implementation planning.
@@ -31,6 +31,7 @@ This skill shapes the change before planning or implementation. It does not edit
 - Do not invent requirements, ownership, contracts, or rollout needs.
 - If only one sensible approach exists, say so and keep the strategy short.
 - If the work is already clear enough to break into implementation steps, recommend `plan`.
+- When a material decision exists, read and apply `../decision-rubric/SKILL.md`.
 - If testing implications matter, read and apply `../test-rubric/SKILL.md`.
 
 ## Use When
@@ -95,10 +96,11 @@ This skill shapes the change before planning or implementation. It does not edit
    - configuration or runtime contracts
 5. Compare 2-3 viable approaches when alternatives genuinely exist.
 6. If only one sensible approach exists, state why and avoid fake alternatives.
-7. Recommend the smallest approach that satisfies the goal.
-8. Define scope and out-of-scope work.
-9. Identify testing, verification, and rollout implications.
-10. Decide whether the strategy is ready for planning.
+7. Read and apply `../decision-rubric/SKILL.md` when the decision is material.
+8. Recommend the smallest approach that satisfies the goal.
+9. Define scope and out-of-scope work.
+10. Identify testing, verification, and rollout implications.
+11. Decide whether the strategy is ready for planning.
 
 ## Readiness gate
 
@@ -110,6 +112,7 @@ A Design Strategy is ready for planning only when:
 - scope and out-of-scope work are explicit
 - testing and verification implications are understood enough to plan
 - unresolved decisions are either minor or clearly listed
+- each material decision has enough evidence, trade-off, assumption, and impact detail to approve or block it
 - implementation can be planned without inventing architecture or behaviour
 
 Recommend investigation before planning when the relevant repo context is too weak.
@@ -159,23 +162,30 @@ Use this structure:
 - Pros:
 - Cons:
 - Risk:
+- Evidence:
+- Assumptions / unknowns:
 
 ### Option 2: <name>
 - Summary:
 - Pros:
 - Cons:
 - Risk:
+- Evidence:
+- Assumptions / unknowns:
 
 ### Option 3: <name, optional>
 - Summary:
 - Pros:
 - Cons:
 - Risk:
+- Evidence:
+- Assumptions / unknowns:
 
 ## Recommendation
 - Recommended approach:
 - Why this fits best:
 - Trade-offs accepted:
+- Decision status: resolved | non-blocking unknown | blocking user decision
 
 ## Scope Boundary
 - In scope:
@@ -201,4 +211,4 @@ Use this structure:
 - Recommended next step: plan | ask user | investigate further
 - Reason:
 
-Keep the strategy concise enough to guide planning without becoming a full specification.
+Keep the strategy concise by removing repetition and irrelevant detail, not by omitting evidence needed to make a material decision.

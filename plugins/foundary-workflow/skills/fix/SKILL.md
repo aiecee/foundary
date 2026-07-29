@@ -24,6 +24,7 @@ Create a focused bug-fix strategy. This skill shapes the fix before implementati
 - Prefer the smallest fix that addresses the root cause.
 - Avoid surrounding rewrites unless necessary for the fix.
 - Add or update regression coverage when valuable.
+- When competing causes, fix boundaries, or risk postures exist, read and apply `../decision-rubric/SKILL.md`.
 - Before recommending regression coverage, read and apply `../test-rubric/SKILL.md`.
 - Verify the fix against the original failure mode.
 - Do not weaken tests unless the test is proven wrong and the corrected test still protects meaningful behaviour.
@@ -59,12 +60,13 @@ observe -> reproduce -> isolate -> minimal fix -> regression decision -> verify
 3. Reproduce with the narrowest useful command, or document why reproduction is unavailable.
 4. Isolate likely cause using evidence from code, tests, logs, history, or runtime behaviour.
 5. Define the minimal fix boundary and affected files or likely locations.
-6. Read and apply `../test-rubric/SKILL.md`, then decide whether regression coverage is valuable and at which boundary.
-7. Choose a verification posture:
+6. Read and apply `../decision-rubric/SKILL.md` when the fix involves a material decision.
+7. Read and apply `../test-rubric/SKILL.md`, then decide whether regression coverage is valuable and at which boundary.
+8. Choose a verification posture:
    - `existing red`: existing failing test, command, reproduction, runtime error, or reported behaviour demonstrates the problem.
    - `new regression`: add focused coverage for a valuable failure mode.
    - `no new test`: allowed only for trivial, low-risk, or better-verified fixes.
-8. Recommend the next step: plan, implement directly, ask user, or investigate further.
+9. Recommend the next step: plan, implement directly, ask user, or investigate further.
 
 ## Readiness gate
 
@@ -74,6 +76,7 @@ A Fix Strategy is ready for implementation only when:
 - reproduction exists, or reproduction absence is justified and the failure is otherwise unambiguous
 - likely cause has concrete evidence
 - fix boundary is narrow
+- any material fix decision includes alternatives, accepted trade-offs, assumptions, and impact
 - verification checks the original failure mode
 
 Recommend planning before implementation when the fix crosses multiple subsystems, requires sequencing, needs compatibility decisions, or cannot be safely localized.
@@ -117,6 +120,13 @@ Use this structure:
 ## Fix Boundary
 - Smallest in-scope fix:
 - Files or likely locations:
+
+## Decision Notes (when material)
+- Alternatives considered:
+- Trade-offs accepted:
+- Assumptions / unknowns:
+- Impact / reversibility:
+- Decision status: resolved | non-blocking unknown | blocking user decision
 
 ## Evidence / Protection
 - Existing red signal:

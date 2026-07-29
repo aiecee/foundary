@@ -25,6 +25,7 @@ Create a strategy for making existing behaviour safer or more robust without cha
 - Avoid redesigning the surrounding architecture.
 - Add focused tests around the risk or failure mode when valuable.
 - Verify both the normal path and the hardened path.
+- When safety actions or compatibility consequences have meaningful alternatives, read and apply `../decision-rubric/SKILL.md`.
 - Recommend `scope-guard` after changes when drift risk is meaningful.
 
 ## Good uses
@@ -75,12 +76,13 @@ This is not a generic cleanup skill.
    - surface error
    - no-op
 5. Identify affected contracts, callers, and compatibility concerns.
-6. Propose the smallest safety improvement that handles the risk.
-7. Choose a verification posture:
+6. Read and apply `../decision-rubric/SKILL.md` when the hardening decision is material.
+7. Propose the smallest safety improvement that handles the risk.
+8. Choose a verification posture:
    - `characterization`: existing checks protect the unchanged normal path.
    - `new regression`: add focused coverage for the risky or guarded path.
    - `no new test`: allowed only for trivial, low-risk, or better-verified hardening.
-8. Recommend the next step: plan, implement directly, ask user, or investigate further.
+9. Recommend the next step: plan, implement directly, ask user, or investigate further.
 
 ## Readiness gate
 
@@ -90,6 +92,7 @@ A Hardening Strategy is ready for implementation only when:
 - the happy path is explicitly unchanged
 - guarded cases and safety action are clear
 - compatibility concerns are checked or explicitly absent
+- any material safety decision includes alternatives, accepted trade-offs, assumptions, and impact
 - verification covers both normal and hardened paths
 
 Recommend planning before implementation when hardening affects public contracts, multiple callers, permissions, data integrity, deployment sequencing, or compatibility-sensitive behaviour.
@@ -133,6 +136,13 @@ Use this structure:
 ## Compatibility
 - Caller expectations:
 - Compatibility risk:
+
+## Decision Notes (when material)
+- Alternatives considered:
+- Trade-offs accepted:
+- Assumptions / unknowns:
+- Impact / reversibility:
+- Decision status: resolved | non-blocking unknown | blocking user decision
 
 ## Scope Boundary
 

@@ -26,6 +26,7 @@ Create a strategy for deliberate contract migration. This skill shapes the migra
 - Separate mechanical updates from semantic behaviour changes.
 - Update tests, docs, config, and examples when they are part of the migrated contract.
 - Verify the old assumption is removed or intentionally supported.
+- When compatibility, rollout, or old-contract support has meaningful alternatives, read and apply `../decision-rubric/SKILL.md`.
 - Recommend `scope-guard` after changes when drift risk is meaningful.
 
 ## Good uses
@@ -78,11 +79,12 @@ Create a strategy for deliberate contract migration. This skill shapes the migra
    - verification
 6. Identify rollback or deployment sequencing notes, or state `Not needed`.
 7. Define how old-contract usage will be removed or intentionally supported.
-8. Choose a verification posture:
+8. Read and apply `../decision-rubric/SKILL.md` when the migration decision is material.
+9. Choose a verification posture:
    - `characterization`: existing tests or manual checks prove migrated behaviour remains correct.
    - `new regression`: add focused coverage for the target contract or compatibility path.
    - `no new test`: allowed only for trivial, mechanical, low-risk migrations.
-9. Recommend the next step: plan, implement directly, ask user, or investigate further.
+10. Recommend the next step: plan, implement directly, ask user, or investigate further.
 
 ## Readiness gate
 
@@ -94,6 +96,7 @@ A Migration Strategy is ready for implementation only when:
 - proposed steps are small or mechanical
 - rollback/deployment notes are addressed
 - old-contract removal or support can be verified
+- any material migration decision includes alternatives, accepted trade-offs, assumptions, and impact
 
 Recommend planning before implementation when the migration is broad, multi-phase, compatibility-sensitive, deployment-sensitive, or includes semantic behaviour changes.
 
@@ -130,6 +133,13 @@ Use this structure:
 ## Compatibility / Rollout
 - Posture: direct cutover | adapter | dual support | staged rollout
 - Rollback/deployment notes: <notes | Not needed>
+
+## Decision Notes (when material)
+- Alternatives considered:
+- Trade-offs accepted:
+- Assumptions / unknowns:
+- Impact / reversibility:
+- Decision status: resolved | non-blocking unknown | blocking user decision
 
 ## Scope Boundary
 - In scope:

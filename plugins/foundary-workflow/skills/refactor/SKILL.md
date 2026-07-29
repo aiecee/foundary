@@ -25,6 +25,7 @@ Create a controlled strategy for behaviour-preserving code restructuring. This s
 - Prefer small, reversible transformations.
 - Avoid opportunistic architecture redesign.
 - Avoid broad formatting churn unless formatting is the explicit requested change.
+- When competing transformations, boundaries, or protection postures exist, read and apply `../decision-rubric/SKILL.md`.
 - Recommend stronger characterization or planning when existing behavioural protection is uncertain.
 - Recommend `scope-guard` after changes when drift risk is meaningful.
 
@@ -71,13 +72,14 @@ Create a controlled strategy for behaviour-preserving code restructuring. This s
    - side effects and error behaviour unchanged unless explicitly out of scope
 3. If the request is not a refactor, say so and recommend the better Foundary skill.
 4. Name the unchanged behaviour, contracts, callers, and accidental-change signals.
-5. Identify protection evidence and protection gaps.
-6. Propose small transformation steps with explicit boundaries.
-7. Choose a verification posture:
+5. Read and apply `../decision-rubric/SKILL.md` when the refactor involves a material decision.
+6. Identify protection evidence and protection gaps.
+7. Propose small transformation steps with explicit boundaries.
+8. Choose a verification posture:
    - `characterization`: existing passing tests or manual checks protect behaviour.
    - `new regression`: add focused coverage before refactoring when valuable.
    - `no new test`: allowed only for trivial, low-risk, or better-verified restructuring.
-8. Recommend the next step: plan, implement directly, ask user, or investigate further.
+9. Recommend the next step: plan, implement directly, ask user, or investigate further.
 
 ## Readiness gate
 
@@ -85,6 +87,7 @@ A Refactor Strategy is ready for implementation only when:
 
 - preserved behaviour and public/runtime contracts are explicit
 - proposed steps are small and reversible
+- any material refactor decision includes alternatives, accepted trade-offs, assumptions, and impact
 - verification posture is credible for the risk
 - no feature, fix, hardening, migration, dependency, or cleanup work is mixed in
 
@@ -122,6 +125,13 @@ Use this structure:
 ## Scope Boundary
 - In scope:
 - Out of scope:
+
+## Decision Notes (when material)
+- Alternatives considered:
+- Trade-offs accepted:
+- Assumptions / unknowns:
+- Impact / reversibility:
+- Decision status: resolved | non-blocking unknown | blocking user decision
 
 ## Evidence / Protection
 - Existing protection:

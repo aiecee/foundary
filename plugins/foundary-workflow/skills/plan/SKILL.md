@@ -1,12 +1,12 @@
 ---
 name: plan
-description: Turn a goal, strategy, or rough change request into a compact behaviour-first implementation plan with clear scope, test intent, and verification.
+description: Turn a goal, strategy, or rough change request into a concise, decision-complete behaviour-first implementation plan with clear scope, test intent, and verification.
 compatibility: 'Requires: git and filesystem access. May inspect repository context and read test-rubric when tests are relevant.'
 ---
 
 # Plan
 
-Create a compact implementation plan that helps a human or agent implement a change safely.
+Create a concise implementation plan that helps a human or agent implement a change safely without losing material decision context.
 
 This skill is for planning only. Do not edit files, stage changes, commit, or perform implementation work unless the user separately asks for execution.
 
@@ -14,12 +14,13 @@ This skill is for planning only. Do not edit files, stage changes, commit, or pe
 
 - Ground the plan in the repository before proposing work.
 - Inspect the smallest useful context.
-- Keep the plan as small as the change allows.
+- Keep the plan as small as the change allows; remove repetition, not material decision evidence.
 - Prefer behaviour-first steps over architecture-first steps.
 - Use existing repo patterns.
 - Avoid speculative abstractions.
 - Avoid broad refactors unless explicitly requested.
 - When given a `fix`, `refactor`, `harden`, `migrate`, or `design` strategy, preserve its intent, scope boundary, and verification posture.
+- When a material decision exists, read and apply `../decision-rubric/SKILL.md`.
 - Do not re-litigate a strategy unless repository reality contradicts it.
 - Call out uncertainty instead of inventing detail.
 - Do not create a plan document unless the user asks.
@@ -50,13 +51,14 @@ Continue with `plan` when the goal or strategy is clear enough to break into imp
    - repo instructions
    - project scripts or commands when needed
 3. Identify the intended behaviour change or preserved behaviour.
-4. Define in-scope and out-of-scope work.
-5. Choose the simplest viable approach.
-6. Split the work into small behaviour-focused steps.
-7. Decide whether tests are needed.
-8. If tests are needed, read and apply `../test-rubric/SKILL.md`.
-9. Define verification commands or manual checks.
-10. List stop conditions where implementation should pause instead of guessing.
+4. Read and apply `../decision-rubric/SKILL.md` when the strategy or repository context contains a material decision.
+5. Define in-scope and out-of-scope work.
+6. Choose the simplest viable approach without silently resolving new material decisions.
+7. Split the work into small behaviour-focused steps.
+8. Decide whether tests are needed.
+9. If tests are needed, read and apply `../test-rubric/SKILL.md`.
+10. Define verification commands or manual checks.
+11. List stop conditions where implementation should pause instead of guessing.
 
 ## Test Planning
 
@@ -81,7 +83,7 @@ For tiny changes, use 3-5 bullets.
 
 For normal changes, use the full output shape.
 
-For risky, cross-boundary, or unclear changes, keep the plan short and call out the decision needed before implementation.
+For risky, cross-boundary, or unclear changes, keep implementation steps short while expanding the decision context needed before implementation.
 
 ## Output Shape
 
@@ -101,6 +103,13 @@ Out:
 ## Context
 
 [Relevant files, existing patterns, constraints, assumptions, or unknowns.]
+
+## Adopted Decisions (when applicable)
+
+- Decision:
+- Evidence / rationale summary:
+- Implementation constraints:
+- Decision status: resolved | non-blocking unknown
 
 ## Approach
 
@@ -132,6 +141,8 @@ Out:
 ## Stop Conditions
 
 - [When to pause instead of guessing.]
+- A new material product, contract, compatibility, rollout, or architecture decision appears that is not covered by the supplied strategy.
+- The supplied strategy is missing evidence needed to preserve a material decision.
 ```
 
 ## Quality Bar
@@ -144,5 +155,6 @@ A good plan is:
 * clear about tests
 * clear about verification
 * honest about uncertainty
+* decision-complete when material choices exist
 * free of invented architecture
 * free of unrelated cleanup

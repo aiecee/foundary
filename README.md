@@ -17,7 +17,7 @@ Foundary follows the Codex plugin structure and includes Cursor and Claude plugi
 - `.agents/plugins/marketplace.json` defines the repo marketplace.
 - `.cursor-plugin/marketplace.json` defines the Cursor marketplace.
 - `.claude-plugin/marketplace.json` defines the Claude Code marketplace.
-- `plugins/foundary-workflow` contains investigation, design, strategy, compact planning, scope guard, and workflow-owned test quality guidance skills.
+- `plugins/foundary-workflow` contains investigation, design, focused strategies, concise decision-complete planning, scope guard, and workflow-owned quality rubrics.
 - `plugins/foundary-git` contains git analysis and commit workflow skills.
 - Each plugin owns its `.codex-plugin/plugin.json`, `.cursor-plugin/plugin.json`, `.claude-plugin/plugin.json`, and `skills/` directory.
 
@@ -137,12 +137,12 @@ claude plugin install foundary-git@foundary
 
 ## Plugins
 
-- `foundary-workflow` guides investigation, design decisions, focused change strategies, compact implementation plans, scope checks, and test-quality decisions.
+- `foundary-workflow` guides investigation, design decisions, focused change strategies, concise decision-complete implementation plans, scope checks, and workflow-quality rubrics.
 - `foundary-git` supports repository status checks, diff review, conflict resolution, change splitting, and scoped Conventional Commits.
 
 ## Core v2 skills
 
-- `foundary-workflow`: `investigate`, `design`, `fix`, `refactor`, `harden`, `migrate`, `plan`, `scope-guard`, `test-rubric`
+- `foundary-workflow`: `investigate`, `design`, `fix`, `refactor`, `harden`, `migrate`, `plan`, `scope-guard`, `decision-rubric`, `test-rubric`
 - `foundary-git`: `status`, `review`, `resolve`, `split`, `commit`
 
 Workflow-owned test-quality guidance lives in `test-rubric`. Git skills stay focused on repository state, diff readiness, conflict resolution, splitting, and commits.

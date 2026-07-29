@@ -71,6 +71,7 @@ tail -n 120 /tmp/test.log
 
 # Planning discipline
 - Create a short, concrete plan before non-trivial work.
+- Keep plans concise by removing repetition, not by omitting material decision evidence, trade-offs, assumptions, or blockers.
 - Keep plans testable and executable.
 - Update plans when implementation reality differs from assumptions.
 
