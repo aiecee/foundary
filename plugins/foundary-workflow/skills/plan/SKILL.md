@@ -16,6 +16,11 @@ This skill is for planning only. Do not edit files, stage changes, commit, or pe
 - Inspect the smallest useful context.
 - Keep the plan as small as the change allows; remove repetition, not material decision evidence.
 - Prefer behaviour-first steps over architecture-first steps.
+- Read and apply ../workflow-rubric/SKILL.md for material or cross-boundary work
+  before choosing implementation steps.
+- Keep one plan focused on one coherent behaviour or contract change; keep
+  tightly coupled schema, query, transformer, and generated-type changes
+  together; identify a milestone or handoff when the work crosses that boundary.
 - Use existing repo patterns.
 - Avoid speculative abstractions.
 - Avoid broad refactors unless explicitly requested.
@@ -44,7 +49,7 @@ Continue with `plan` when the goal or strategy is clear enough to break into imp
 
 ## Workflow
 
-1. Understand the goal.
+1. Understand the goal and apply the workflow rubric when applicable.
 2. Inspect the smallest useful repo context:
    - relevant source files
    - nearby tests
@@ -57,7 +62,8 @@ Continue with `plan` when the goal or strategy is clear enough to break into imp
 7. Split the work into small behaviour-focused steps.
 8. Decide whether tests are needed.
 9. If tests are needed, read and apply `../test-rubric/SKILL.md`.
-10. Define verification commands or manual checks.
+10. Define verification commands or manual checks using the workflow rubric's
+    validation ladder.
 11. List stop conditions where implementation should pause instead of guessing.
 
 ## Test Planning
@@ -91,6 +97,14 @@ For risky, cross-boundary, or unclear changes, keep implementation steps short w
 ## Goal
 
 [What will change and why.]
+
+## Task Contract (when applicable)
+
+- Canonical surface:
+- Source of truth:
+- Runtime assumptions:
+- Acceptance checks:
+- Stop conditions:
 
 ## Scope
 
@@ -131,16 +145,28 @@ Out:
 - Given:
 - When:
 - Then:
-- Command:
+- Focused command:
+- Broader verification, if justified:
 - Untested gap, if any:
 
 ## Verification
 
-- [Commands or manual checks.]
+- Focused check during implementation:
+- Package-level check after the slice is stable:
+- Broader final check, if justified:
+- Manual checks:
+
+## Handoff
+
+- Handoff after:
+- Carry forward:
+- Revalidate:
 
 ## Stop Conditions
 
 - [When to pause instead of guessing.]
+- The canonical surface, source of truth, or runtime assumptions differ from
+  the task contract.
 - A new material product, contract, compatibility, rollout, or architecture decision appears that is not covered by the supplied strategy.
 - The supplied strategy is missing evidence needed to preserve a material decision.
 ```

@@ -24,6 +24,8 @@ This skill shapes the change before planning or implementation. It does not edit
 
 - Use this when implementation planning would require guessing about architecture, ownership, contracts, or product behaviour.
 - Keep the strategy as small as the decision allows; remove repetition, not material decision evidence.
+- Read and apply ../workflow-rubric/SKILL.md before comparing options for
+  material or cross-boundary work.
 - Prefer existing repo patterns over new abstractions.
 - Prefer the simplest approach that satisfies the goal.
 - Do not turn design into implementation planning.
@@ -107,11 +109,13 @@ This skill shapes the change before planning or implementation. It does not edit
 A Design Strategy is ready for planning only when:
 
 - the recommended approach is clear
+- the task contract is explicit when the work is material or cross-boundary
 - affected boundaries are named
 - important trade-offs have been considered
 - scope and out-of-scope work are explicit
 - testing and verification implications are understood enough to plan
 - unresolved decisions are either minor or clearly listed
+- the next milestone or handoff boundary is clear
 - each material decision has enough evidence, trade-off, assumption, and impact detail to approve or block it
 - implementation can be planned without inventing architecture or behaviour
 
@@ -142,6 +146,13 @@ Use this structure:
 ## Change Intent
 - Goal:
 - Success criteria:
+
+## Task Contract (when applicable)
+- Canonical surface:
+- Source of truth:
+- Runtime assumptions:
+- Acceptance checks:
+- Stop conditions:
 
 ## Repository Context
 - Relevant files/patterns:
@@ -210,5 +221,7 @@ Use this structure:
 - Ready for next step: yes | no
 - Recommended next step: plan | ask user | investigate further
 - Reason:
+- Carry forward: adopted decisions, relevant files, checks run, and open questions
+- Revalidate: runtime or environment assumptions at the next handoff
 
 Keep the strategy concise by removing repetition and irrelevant detail, not by omitting evidence needed to make a material decision.

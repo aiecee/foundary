@@ -121,6 +121,16 @@ It is acceptable to add no test when:
 
 If skipping tests, state why.
 
+## Validation Boundary
+
+Read and apply ../workflow-rubric/SKILL.md when validation extends beyond the
+focused test.
+
+- This rubric owns test behaviour, placement, and scope.
+- The plan owns the overall validation sequence.
+- Do not add repeated broad tests to compensate for unclear scope or an
+  unverified implementation assumption.
+
 ## Review Checklist
 
 Before finishing, check:
@@ -145,5 +155,6 @@ When planning tests, include:
 - Given: the starting state, inputs, or preconditions.
 - When: the action, event, or call under test.
 - Then: the observable result that proves the behaviour.
-- command to run.
+- focused command to run.
+- broader verification, if justified.
 - any meaningful gap left untested.

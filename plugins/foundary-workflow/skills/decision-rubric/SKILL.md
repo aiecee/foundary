@@ -35,6 +35,9 @@ For each material decision, preserve only the fields that matter:
 
 Existing sections such as Options, Recommendation, Compatibility, or Open Decisions may satisfy these fields. Do not repeat the same rationale in a second section.
 
+For the shared task contract, milestone, handoff, and durable-context rules,
+read and apply the workflow rubric at ../workflow-rubric/SKILL.md.
+
 ## Adaptive output rules
 
 - Keep simple work at its current compact size.
@@ -47,7 +50,11 @@ Existing sections such as Options, Recommendation, Compatibility, or Open Decisi
 ## Strategy-to-plan handoff
 
 - The strategy owns the full decision rationale.
-- A plan should carry a compact summary of adopted decisions and their implementation constraints.
+- The plan carries a compact summary of adopted decisions, relevant task
+  contract fields, and implementation constraints, not the full strategy
+  repetition.
+- Runtime assumptions are revalidated at the handoff; they are not treated as
+  durable decisions.
 - A plan must not silently resolve a new material decision discovered during repository grounding.
 
 ## Review checklist

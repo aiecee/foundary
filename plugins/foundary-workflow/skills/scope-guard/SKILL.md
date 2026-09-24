@@ -8,12 +8,15 @@ compatibility: 'Requires: git and filesystem access. May run clearly non-mutatin
 
 Check whether proposed or actual changes stayed inside the agreed scope. This skill is strict and read-only.
 
-Use it before implementation, when drift is suspected, or before git review and commit. It does not fix drift.
+Use it before implementation, when drift is suspected, at milestone or handoff
+checkpoints, or before git review and commit. It does not fix drift.
 
 ## Required outcomes
 
 - Identify the scope source.
 - Identify the change baseline being reviewed.
+- Identify the current review checkpoint; revalidate runtime assumptions when
+  they affect scope.
 - Classify changes as `IN SCOPE`, `INCIDENTAL`, `SUSPICIOUS`, or `BLOCKING DRIFT`.
 - Provide file and line references where available.
 - End with exactly one review outcome.
@@ -25,6 +28,8 @@ Use it before implementation, when drift is suspected, or before git review and 
 - Never mutate external systems.
 - Prefer evidence over assumption.
 - Judge changes against the approved request, strategy, task boundary, or explicit scope.
+- When a task contract exists, read and apply
+  ../workflow-rubric/SKILL.md while judging the change.
 - Flag scope drift even when the change seems useful.
 - Do not silently repair drift.
 - If scope context is partial, report confidence and the missing context.
@@ -82,20 +87,25 @@ If either scope source or change baseline is missing, report `NO SCOPE BASELINE`
 - broad edits that exceed the stated request
 - generated or snapshot changes without an approved reason
 - new public contracts not called for by the scope
+- a different canonical route, page, URL, or runtime target than the approved scope
+- a new schema, data shape, or architecture boundary discovered during implementation
 
 ## Workflow
 
 1. Identify the scope source and change baseline.
-2. Inspect the relevant proposed or actual changes.
-3. Classify changed areas with evidence and file/line references where available.
-4. Distinguish unclear scope from confirmed out-of-scope change.
-5. Choose exactly one required follow-up action:
+2. Identify the review checkpoint: pre-implementation, milestone or handoff,
+   or final review.
+3. Revalidate current runtime or browser assumptions when they affect scope.
+4. Inspect the relevant proposed or actual changes.
+5. Classify changed areas with evidence and file/line references where available.
+6. Distinguish unclear scope from confirmed out-of-scope change.
+7. Choose exactly one required follow-up action:
    - proceed
    - ask for scope approval
    - split unrelated work
    - remove drift manually
    - update the strategy before continuing
-6. Report findings without editing.
+8. Report findings without editing.
 
 ## Readiness gate
 
@@ -104,6 +114,7 @@ Scope Guard Findings are useful only when:
 - the scope source is explicit enough to judge against
 - the change baseline is inspectable
 - findings cite concrete files, hunks, or proposed changes where possible
+- the review checkpoint is explicit enough to judge whether new work is drift
 - confidence is stated when context is incomplete
 
 If the scope source or baseline is absent, do not infer. Return `NO SCOPE BASELINE`.
@@ -126,6 +137,7 @@ Lead with out-of-scope or suspicious findings when any exist. Use this structure
 ## Scope Source
 - Source:
 - Confidence:
+- Checkpoint:
 
 ## Change Baseline
 - Baseline reviewed:

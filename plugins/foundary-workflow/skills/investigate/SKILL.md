@@ -17,6 +17,8 @@ The brief should help the user decide whether to stop, ask a question, create a 
 - Prefer evidence over assumptions.
 - Separate observed facts from inference.
 - Keep the investigation narrow enough to answer the question.
+- Read and apply ../workflow-rubric/SKILL.md when the investigation may lead to
+  implementation or another material decision.
 - Do not produce an implementation plan.
 - Do not silently fix discovered issues.
 
@@ -55,7 +57,7 @@ Choose the narrowest useful focus:
 
 ## Workflow
 
-1. Restate the investigation question.
+1. Restate the investigation question and define its boundary using the workflow rubric when applicable.
 2. Inspect only the smallest useful context.
 3. Record findings as observed, inferred, unknown, or speculative.
 4. Surface contradictions instead of smoothing them over.
@@ -75,6 +77,22 @@ Choose the narrowest useful focus:
 - required access is unavailable
 - evidence is insufficient for a safe conclusion
 - additional investigation has diminishing returns
+
+## Investigation Boundary
+
+Include this section when it helps bound the work:
+
+```md
+## Investigation Boundary
+- Question:
+- Source of truth:
+- Ownership boundary:
+- Relevant files or integration points:
+- Runtime assumptions, if relevant:
+- Verification path:
+- Not investigated:
+- Open questions:
+```
 
 ## Output format
 
