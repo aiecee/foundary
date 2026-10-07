@@ -2,7 +2,7 @@
 
 Foundary is a Codex plugin marketplace for strategy-first software delivery with workflow-owned guardrails and dedicated git support:
 
-`investigate` + `design` + focused strategies (`fix`, `refactor`, `harden`, `migrate`) + `plan` + `scope-guard` + shared `workflow-rubric` + `test-rubric` + git support skills (`status`, `review`, `resolve`, `split`, `commit`)
+`investigate` + `design` + focused strategies (`fix`, `refactor`, `harden`, `migrate`) + `plan` + `implement` + `scope-guard` + shared `workflow-rubric` + `test-rubric` + git support skills (`status`, `review`, `resolve`, `split`, `commit`)
 
 The repository is Codex-first, Cursor-compatible, and Claude-compatible. It exposes two local plugins through the repo marketplace:
 
@@ -50,6 +50,7 @@ foundary/
     │       ├── design/
     │       ├── investigate/
     │       ├── plan/
+    │       ├── implement/
     │       ├── scope-guard/
     │       ├── test-rubric/
     │       └── workflow-rubric/
@@ -143,7 +144,7 @@ claude plugin install foundary-git@foundary
 
 ## Core v2 skills
 
-- `foundary-workflow`: `investigate`, `design`, `fix`, `refactor`, `harden`, `migrate`, `plan`, `scope-guard`, `decision-rubric`, shared `workflow-rubric`, `test-rubric`
+- `foundary-workflow`: `investigate`, `design`, `fix`, `refactor`, `harden`, `migrate`, `plan`, `implement`, `scope-guard`, `decision-rubric`, shared `workflow-rubric`, `test-rubric`
 - `foundary-git`: `status`, `review`, `resolve`, `split`, `commit`
 
 Shared workflow guidance lives in `workflow-rubric`; test-quality guidance lives in `test-rubric`. Git skills stay focused on repository state, diff readiness, conflict resolution, splitting, and commits.

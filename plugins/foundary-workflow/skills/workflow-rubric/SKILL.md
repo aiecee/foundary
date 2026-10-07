@@ -6,7 +6,7 @@ description: Shared Foundary workflow guidance for task contracts, bounded inves
 # Workflow Rubric
 
 This is a shared reference rubric for the Foundary workflow skills. Apply it
-from investigate, design, plan, scope-guard, or test-rubric; it does not replace
+from investigate, design, plan, implement, scope-guard, or test-rubric; it does not replace
 those skills or provide an independent implementation strategy.
 
 ## When to apply
