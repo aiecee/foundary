@@ -53,6 +53,7 @@ This skill shapes the change before planning or implementation. It does not edit
 - Safer validation, error handling, permissions, external input, or edge cases -> use `harden`.
 - Moving from one contract, convention, dependency, schema, config, or API to another -> use `migrate`.
 - The change is already clear enough to plan directly -> use `plan`.
+- An approach cannot be judged until an unknown is proven by running code -> use `spike` first.
 
 ## Allowed
 
@@ -219,7 +220,7 @@ Use this structure:
 
 ## Handoff Recommendation
 - Ready for next step: yes | no
-- Recommended next step: plan | ask user | investigate further
+- Recommended next step: plan | ask user | investigate further | spike
 - Reason:
 - Carry forward: adopted decisions, relevant files, checks run, and open questions
 - Revalidate: runtime or environment assumptions at the next handoff

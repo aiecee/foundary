@@ -114,4 +114,4 @@ Use this structure:
 ## Next Step
 ```
 
-Recommended next steps should be one of: no action needed, ask user, investigate further, create design strategy, create fix strategy, create refactor strategy, create hardening strategy, create migration strategy, create implementation plan, implement directly, add tests, add instrumentation, or verify manually.
+Recommended next steps should be one of: no action needed, ask user, investigate further, run a spike, create design strategy, create fix strategy, create refactor strategy, create hardening strategy, create migration strategy, create implementation plan, implement directly, add tests, add instrumentation, or verify manually.
