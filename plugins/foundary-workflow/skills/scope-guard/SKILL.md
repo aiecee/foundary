@@ -27,6 +27,7 @@ checkpoints, or before git review and commit. It does not fix drift.
 - Never stage, commit, push, reset, stash, amend, or otherwise mutate git state.
 - Never mutate external systems.
 - Prefer evidence over assumption.
+- Judge only from the scope source and the change baseline. Do not accept the implementer's rationale, summaries, or explanations as evidence that a change is in scope.
 - Judge changes against the approved request, strategy, task boundary, or explicit scope.
 - When a task contract exists, read and apply
   ../workflow-rubric/SKILL.md while judging the change.
