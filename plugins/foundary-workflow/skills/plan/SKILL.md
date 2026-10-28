@@ -132,7 +132,11 @@ Out:
 ## Steps
 
 1. [Small behaviour-focused step.]
+   - Files: [paths this step edits, or reads that are critical to it]
+   - Done when: [focused check or observable result]
 2. [Small behaviour-focused step.]
+   - Files:
+   - Done when:
 3. [Verification step.]
 
 ## Testing
