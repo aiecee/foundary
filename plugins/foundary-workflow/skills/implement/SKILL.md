@@ -18,6 +18,13 @@ Execute a supplied plan or strategy. The input is the contract; do not re-plan, 
 - No unrelated cleanup, formatting, renames, or refactors, even if useful. Note them for later instead.
 - Do not stage, commit, or push unless the user asks.
 
+## Subagents
+
+- For a plan, run each step in its own subagent. Brief it with the plan's Goal, Scope, Adopted Decisions, Stop Conditions, and Verification, plus the step to do. It returns the step status (done | skipped | blocked), check results, and deviations.
+- For a strategy, implement inline.
+- Run noisy checks in a subagent that returns pass/fail and only the relevant failure lines.
+- A subagent that hits a stop condition returns it; never resolve it inside the subagent.
+
 ## Stop and report when
 
 - a Stop Condition from the plan or strategy fires;
@@ -31,7 +38,7 @@ Report what was done so far, what blocked, and the decision needed. Do not guess
 ## Finish
 
 1. Run the plan's final verification.
-2. Run ../scope-guard/SKILL.md against the plan or strategy and the working tree diff.
+2. Run ../scope-guard/SKILL.md in a fresh subagent, given only the plan or strategy and the working tree diff.
 3. Report:
 
 ```md
