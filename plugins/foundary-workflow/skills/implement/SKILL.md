@@ -25,6 +25,19 @@ Execute a supplied plan or strategy. The input is the contract; do not re-plan, 
 - Run noisy checks in a subagent that returns pass/fail and only the relevant failure lines.
 - A subagent that hits a stop condition returns it; never resolve it inside the subagent.
 
+## Model selection
+
+- For implementation steps, prefer the host's economical coding
+  model suitable for executing a fully specified plan.
+- Request medium reasoning effort when supported; otherwise use
+  the selected model's default.
+- Resolve the model from the host's available models, documented
+  aliases, or configured implementation agent. Do not guess model IDs.
+- If no suitable selection mechanism is available, inherit the
+  parent model and effort.
+- Report the selected model and effort when the host exposes them.
+- Model capability does not override this skill's stop conditions.
+
 ## Stop and report when
 
 - a Stop Condition from the plan or strategy fires;
