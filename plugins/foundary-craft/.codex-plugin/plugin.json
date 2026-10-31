@@ -1,12 +1,12 @@
 {
   "name": "foundary-craft",
   "version": "0.1.0",
-  "description": "Foundary Codex craft skills for language- and paradigm-agnostic code-quality standards, starting with structure: where behaviour and responsibility belong.",
+  "description": "Foundary Codex craft skills for language- and paradigm-agnostic code-quality standards: structure (where behaviour and responsibility belong) and expression (how behaviour reads inside cohesive code).",
   "skills": "./skills/",
   "interface": {
     "displayName": "Foundary Craft",
-    "shortDescription": "Source-backed code-quality standards and structure decisions for Codex.",
-    "longDescription": "A Foundary craft plugin with a canonical, source-backed code-quality standards reference and a structure skill for deciding where behaviour, data and dependencies belong without unnecessary architecture.",
+    "shortDescription": "Source-backed code-quality standards with structure and expression decisions for Codex.",
+    "longDescription": "A Foundary craft plugin with a canonical, source-backed code-quality standards reference and a structure skill for deciding where behaviour, data and dependencies belong without unnecessary architecture, and an expression skill for clear functions, names, flow, state, error handling, and comments.",
     "developerName": "Foundary",
     "category": "Coding",
     "capabilities": ["Read", "Write"]

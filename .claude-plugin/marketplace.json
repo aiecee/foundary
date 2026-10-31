@@ -19,7 +19,7 @@
     {
       "name": "foundary-craft",
       "source": "./plugins/foundary-craft",
-      "description": "Foundary craft skills for language- and paradigm-agnostic code-quality standards, starting with structure: where behaviour and responsibility belong."
+      "description": "Foundary craft skills for language- and paradigm-agnostic code-quality standards: structure (where behaviour and responsibility belong) and expression (how behaviour reads inside cohesive code)."
     }
   ]
 }

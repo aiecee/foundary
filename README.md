@@ -2,13 +2,13 @@
 
 Foundary is a Codex plugin marketplace for strategy-first software delivery with workflow-owned guardrails and dedicated git support:
 
-`investigate` + `spike` + `design` + focused strategies (`fix`, `refactor`, `harden`, `migrate`) + `plan` + `implement` + `scope-guard` + `decision-rubric` + shared `workflow-rubric` + `test-rubric` + git support skills (`status`, `review`, `resolve`, `split`, `commit`) + craft skills (`structure`, shared `standards`)
+`investigate` + `spike` + `design` + focused strategies (`fix`, `refactor`, `harden`, `migrate`) + `plan` + `implement` + `scope-guard` + `decision-rubric` + shared `workflow-rubric` + `test-rubric` + git support skills (`status`, `review`, `resolve`, `split`, `commit`) + craft skills (`structure`, `expression`, shared `standards`)
 
 The repository is Codex-first, Cursor-compatible, and Claude-compatible. It exposes three local plugins through the repo marketplace:
 
 - `foundary-workflow`: investigation, spike, design, strategy, planning, implementation, scope guard, and decision, workflow, and test rubric skills.
 - `foundary-git`: `status`, `review`, `resolve`, `split`, and `commit` skills.
-- `foundary-craft`: `structure` skill and the shared `standards` reference for language- and paradigm-agnostic code quality.
+- `foundary-craft`: `structure` and `expression` skills and the shared `standards` reference for language- and paradigm-agnostic code quality.
 
 ## Architecture
 
@@ -81,6 +81,7 @@ foundary/
         │   └── plugin.json
         └── skills/
             ├── structure/
+            ├── expression/
             └── standards/
 ```
 
@@ -159,12 +160,12 @@ claude plugin install foundary-craft@foundary
 
 - `foundary-workflow` guides investigation, timeboxed spikes, design decisions, focused change strategies, concise decision-complete implementation plans, plan implementation, scope checks, and workflow-quality rubrics.
 - `foundary-git` supports repository status checks, diff review, conflict resolution, change splitting, and scoped Conventional Commits.
-- `foundary-craft` defines source-backed, language- and paradigm-agnostic code-quality standards and helps decide where behaviour and responsibility belong.
+- `foundary-craft` defines source-backed, language- and paradigm-agnostic code-quality standards and helps decide where behaviour and responsibility belong and how behaviour is expressed.
 
 ## Core v2 skills
 
 - `foundary-workflow`: `investigate`, `spike`, `design`, `fix`, `refactor`, `harden`, `migrate`, `plan`, `implement`, `scope-guard`, `decision-rubric`, shared `workflow-rubric`, `test-rubric`
 - `foundary-git`: `status`, `review`, `resolve`, `split`, `commit`
-- `foundary-craft`: `structure`, shared `standards`
+- `foundary-craft`: `structure`, `expression`, shared `standards`
 
 Shared workflow guidance lives in `workflow-rubric`; material-decision guidance lives in `decision-rubric`; test-quality guidance lives in `test-rubric`. Code-quality standards live in the `foundary-craft` `standards` reference; craft skills cite them by ID rather than restating them. Git skills stay focused on repository state, diff readiness, conflict resolution, splitting, and commits.
