@@ -1,0 +1,15 @@
+{
+  "name": "foundary-craft",
+  "version": "0.1.0",
+  "description": "Foundary craft skills for language- and paradigm-agnostic code-quality standards, starting with structure: where behaviour and responsibility belong.",
+  "author": {
+    "name": "Foundary"
+  },
+  "keywords": [
+    "craft",
+    "design",
+    "structure",
+    "cohesion",
+    "abstraction"
+  ]
+}

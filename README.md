@@ -2,12 +2,13 @@
 
 Foundary is a Codex plugin marketplace for strategy-first software delivery with workflow-owned guardrails and dedicated git support:
 
-`investigate` + `spike` + `design` + focused strategies (`fix`, `refactor`, `harden`, `migrate`) + `plan` + `implement` + `scope-guard` + `decision-rubric` + shared `workflow-rubric` + `test-rubric` + git support skills (`status`, `review`, `resolve`, `split`, `commit`)
+`investigate` + `spike` + `design` + focused strategies (`fix`, `refactor`, `harden`, `migrate`) + `plan` + `implement` + `scope-guard` + `decision-rubric` + shared `workflow-rubric` + `test-rubric` + git support skills (`status`, `review`, `resolve`, `split`, `commit`) + craft skills (`structure`, shared `standards`)
 
-The repository is Codex-first, Cursor-compatible, and Claude-compatible. It exposes two local plugins through the repo marketplace:
+The repository is Codex-first, Cursor-compatible, and Claude-compatible. It exposes three local plugins through the repo marketplace:
 
 - `foundary-workflow`: investigation, spike, design, strategy, planning, implementation, scope guard, and decision, workflow, and test rubric skills.
 - `foundary-git`: `status`, `review`, `resolve`, `split`, and `commit` skills.
+- `foundary-craft`: `structure` skill and the shared `standards` reference for language- and paradigm-agnostic code quality.
 
 ## Architecture
 
@@ -19,6 +20,7 @@ Foundary follows the Codex plugin structure and includes Cursor and Claude plugi
 - `.claude-plugin/marketplace.json` defines the Claude Code marketplace.
 - `plugins/foundary-workflow` contains investigation, spikes, design, focused strategies, concise decision-complete planning, plan implementation, scope guard, and workflow-owned quality rubrics.
 - `plugins/foundary-git` contains git analysis and commit workflow skills.
+- `plugins/foundary-craft` contains code-quality craft skills and their canonical, source-backed standards reference.
 - Each plugin owns its `.codex-plugin/plugin.json`, `.cursor-plugin/plugin.json`, `.claude-plugin/plugin.json`, and `skills/` directory.
 
 ## Repository layout
@@ -57,7 +59,20 @@ foundary/
     │       ├── decision-rubric/
     │       ├── test-rubric/
     │       └── workflow-rubric/
-    └── foundary-git/
+    ├── foundary-git/
+    │   ├── .codex-plugin/
+    │   │   └── plugin.json
+    │   ├── .cursor-plugin/
+    │   │   └── plugin.json
+    │   ├── .claude-plugin/
+    │   │   └── plugin.json
+    │   └── skills/
+    │       ├── status/
+    │       ├── review/
+    │       ├── resolve/
+    │       ├── split/
+    │       └── commit/
+    └── foundary-craft/
         ├── .codex-plugin/
         │   └── plugin.json
         ├── .cursor-plugin/
@@ -65,11 +80,8 @@ foundary/
         ├── .claude-plugin/
         │   └── plugin.json
         └── skills/
-            ├── status/
-            ├── review/
-            ├── resolve/
-            ├── split/
-            └── commit/
+            ├── structure/
+            └── standards/
 ```
 
 ## Install
@@ -105,7 +117,7 @@ Use the Codex CLI to add this repo marketplace:
 codex plugin marketplace add .
 ```
 
-Run that command from the repository root. Codex reads `.agents/plugins/marketplace.json` and installs the local plugins from `./plugins/foundary-workflow` and `./plugins/foundary-git`.
+Run that command from the repository root. Codex reads `.agents/plugins/marketplace.json` and installs the local plugins from `./plugins/foundary-workflow`, `./plugins/foundary-git`, and `./plugins/foundary-craft`.
 
 ### Cursor plugin marketplace
 
@@ -115,9 +127,10 @@ Start the Cursor Agent CLI from this repository, then run these as Agent chat sl
 /plugin marketplace add /Users/frontendengineer/projects/foundary
 /plugin install foundary-workflow@foundary
 /plugin install foundary-git@foundary
+/plugin install foundary-craft@foundary
 ```
 
-These are typed inside the Agent CLI session, not run as shell commands. Cursor reads `.cursor-plugin/marketplace.json` and installs the local plugins from `./plugins/foundary-workflow` and `./plugins/foundary-git`.
+These are typed inside the Agent CLI session, not run as shell commands. Cursor reads `.cursor-plugin/marketplace.json` and installs the local plugins from `./plugins/foundary-workflow`, `./plugins/foundary-git`, and `./plugins/foundary-craft`.
 
 ### Claude Code plugin marketplace
 
@@ -127,10 +140,11 @@ Start Claude Code from this repository, then run these as Claude Code chat slash
 /plugin marketplace add /Users/frontendengineer/projects/foundary
 /plugin install foundary-workflow@foundary
 /plugin install foundary-git@foundary
+/plugin install foundary-craft@foundary
 /reload-plugins
 ```
 
-These are typed inside the Claude Code session, not run as shell commands. Claude Code reads `.claude-plugin/marketplace.json` and installs the local plugins from `./plugins/foundary-workflow` and `./plugins/foundary-git`.
+These are typed inside the Claude Code session, not run as shell commands. Claude Code reads `.claude-plugin/marketplace.json` and installs the local plugins from `./plugins/foundary-workflow`, `./plugins/foundary-git`, and `./plugins/foundary-craft`.
 
 You can also install from the shell:
 
@@ -138,16 +152,19 @@ You can also install from the shell:
 claude plugin marketplace add /Users/frontendengineer/projects/foundary
 claude plugin install foundary-workflow@foundary
 claude plugin install foundary-git@foundary
+claude plugin install foundary-craft@foundary
 ```
 
 ## Plugins
 
 - `foundary-workflow` guides investigation, timeboxed spikes, design decisions, focused change strategies, concise decision-complete implementation plans, plan implementation, scope checks, and workflow-quality rubrics.
 - `foundary-git` supports repository status checks, diff review, conflict resolution, change splitting, and scoped Conventional Commits.
+- `foundary-craft` defines source-backed, language- and paradigm-agnostic code-quality standards and helps decide where behaviour and responsibility belong.
 
 ## Core v2 skills
 
 - `foundary-workflow`: `investigate`, `spike`, `design`, `fix`, `refactor`, `harden`, `migrate`, `plan`, `implement`, `scope-guard`, `decision-rubric`, shared `workflow-rubric`, `test-rubric`
 - `foundary-git`: `status`, `review`, `resolve`, `split`, `commit`
+- `foundary-craft`: `structure`, shared `standards`
 
-Shared workflow guidance lives in `workflow-rubric`; material-decision guidance lives in `decision-rubric`; test-quality guidance lives in `test-rubric`. Git skills stay focused on repository state, diff readiness, conflict resolution, splitting, and commits.
+Shared workflow guidance lives in `workflow-rubric`; material-decision guidance lives in `decision-rubric`; test-quality guidance lives in `test-rubric`. Code-quality standards live in the `foundary-craft` `standards` reference; craft skills cite them by ID rather than restating them. Git skills stay focused on repository state, diff readiness, conflict resolution, splitting, and commits.

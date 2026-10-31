@@ -4,7 +4,7 @@
     "name": "Foundary"
   },
   "metadata": {
-    "description": "Foundary Cursor plugin marketplace for workflow and git skills",
+    "description": "Foundary Cursor plugin marketplace for workflow, git, and craft skills",
     "version": "0.1.0"
   },
   "plugins": [
@@ -17,6 +17,11 @@
       "name": "foundary-git",
       "source": "./plugins/foundary-git",
       "description": "Foundary git skills for status checks, diff review, conflict resolution, change splitting, and scoped Conventional Commits."
+    },
+    {
+      "name": "foundary-craft",
+      "source": "./plugins/foundary-craft",
+      "description": "Foundary craft skills for language- and paradigm-agnostic code-quality standards, starting with structure: where behaviour and responsibility belong."
     }
   ]
 }
