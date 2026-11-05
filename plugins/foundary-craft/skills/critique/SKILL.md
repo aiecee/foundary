@@ -1,93 +1,166 @@
 ---
 name: critique
-description: Assesses existing code against the Foundary Craft structural and expression standards, reporting only significant, evidence-backed weaknesses with their impact and the smallest proportionate improvement. Use when the user asks for a code-quality critique, design review, or readability assessment of existing code, files, modules, or a diff. Reports only; does not change code unless asked.
+description: Review existing code against Foundary Craft conventions and engineering principles. Identify evidence-backed issues in readability, discoverability, cohesion, complexity, correctness, and maintainability without manufacturing problems or modifying code.
 ---
 
 # Critique
 
-Assess existing code against the Foundary Craft standards and report genuine
-weaknesses, without inventing problems or prescribing needless refactoring.
+Evaluate code according to Foundary's engineering conventions and principles.
 
-Read the canonical standards at ../standards/SKILL.md before assessing. Judge
-against the governing principle, the structural standards ST1–ST6, and the
-expression standards EX1–EX7, citing them by ID. Do not restate, extend, or
-reinterpret them here; if this skill and the reference disagree, the reference
-wins.
+Identify genuine weaknesses, explain their consequences, and recommend proportionate improvements.
 
-This skill critiques. It does not implement changes, plan work, or start a
-development workflow. It works on its own and is language- and
-paradigm-agnostic.
+Do not treat stylistic differences as architectural defects.
 
-## Inputs
+## References
 
-- **Subject:** the code to assess: files, modules, functions, or a diff.
-- **Context:** surrounding code, callers, and how this repository usually
-  structures and expresses similar behaviour.
-- **Optional focus:** particular standards, risks, or areas the user cares
-  about.
+Read and apply:
 
-If the subject is unclear, ask what to assess. For a diff, assess the changed
-code in the context it lands in.
+- `../craft/references/conventions.md`
+- `../craft/references/principles.md`
 
-## Assessment procedure
+Use the conventions to assess code expression and the principles to evaluate engineering decisions.
 
-1. **Read the code in context.** Understand what it does, who calls it, what
-   contracts and trust boundaries it sits behind, and the repository's
-   conventions for similar code. Inspect only what the assessment needs.
-2. **Look for evidence, not surface signs.** Ask where the code is actually
-   hard to understand, hard to change safely, or likely to fail. Length,
-   concise expressions, contained mutation, and similar-but-not-identical
-   implementations are not problems in themselves; each needs a concrete
-   consequence to become a finding.
-3. **Use smells and refactorings as investigative aids.** A Fowler code smell
-   (source F) is a prompt to look closer, not a verdict, and a catalogue
-   refactoring is a candidate, not a command. Extracting, inlining, moving,
-   or leaving the code alone can each be the right outcome; decide by the
-   relevant standard's "Decide by" questions.
-4. **Respect conventions.** Follow the language's idioms and the repository's
-   established patterns (ST6, EX7). Raise an established convention only when
-   it causes a demonstrable quality problem here, not because another style is
-   preferred.
-5. **Classify and calibrate.** For each candidate finding, decide whether it
-   is a correctness risk, a maintainability concern, or a preference, and how
-   confident the evidence makes you. Drop candidates that do not survive this.
+## Assessment
 
-## Finding format
+### Understand the code
 
-For each genuine finding, give:
+Inspect the relevant implementation and enough surrounding context to understand:
 
-- **Where:** file and location.
-- **What:** the specific problem, observed in this code.
-- **Why it matters:** the concrete consequence, citing the standard ID.
-- **Recommendation:** the smallest proportionate improvement; "leave as is"
-  with a note is acceptable when the cost of change outweighs the benefit.
-- **Kind:** correctness risk, maintainability concern, or preference.
-- **Confidence:** stated when the evidence is incomplete, for example when
-  behaviour depends on callers or runtime conditions not inspected.
+- Its responsibility.
+- Its public API and consumers.
+- Its dependencies and state ownership.
+- Its execution and failure behaviour.
+- Its relationship to neighbouring modules.
+- Relevant project conventions and constraints.
 
-Order findings by impact: correctness risks first, then maintainability
-concerns. List preferences separately and briefly, or omit them; never
-present a preference as a defect.
+Do not infer a design problem from an isolated code fragment without examining the necessary context.
+
+### Evaluate navigability
+
+Assess whether:
+
+- Responsibility ownership is predictable.
+- Public entry points are discoverable.
+- Related behaviour is organised coherently.
+- Module and symbol names communicate their purpose.
+- Domain vocabulary is consistent.
+- Navigation follows an understandable path.
+- Unnecessary layers or indirection obstruct comprehension.
+
+Do not treat multiple files or navigation steps as problems by themselves.
+
+### Evaluate expression
+
+Assess whether:
+
+- High-level functions communicate their overall purpose clearly.
+- Substantial stages are decomposed meaningfully.
+- Whitespace and declaration order support readability.
+- Control flow is straightforward.
+- Names are appropriately concise and contextual.
+- Mutation and side effects are understandable.
+- Types and intermediate values provide meaningful clarity.
+- Comments explain reasoning rather than narrating code.
+
+Distinguish deviations from conventions from genuine maintainability problems.
+
+### Evaluate design
+
+Assess whether:
+
+- Abstractions solve actual problems.
+- Shared behaviour has a genuinely shared meaning.
+- Data models represent meaningful constraints.
+- Dependencies and state have clear owners.
+- External libraries and custom implementations are justified.
+- Errors are propagated, handled, or recovered appropriately.
+- Algorithms suit known requirements.
+- Complexity provides a concrete benefit.
+
+Evaluate decisions against the actual use case rather than a preferred architectural pattern.
+
+### Consider project context
+
+Account for:
+
+- Language idioms.
+- Existing project conventions.
+- Project maturity and purpose.
+- Delivery constraints.
+- Refactoring cost and regression risk.
+- Known performance and consistency requirements.
+
+A reasonable compromise under real constraints is not automatically a defect.
+
+## Finding classification
+
+Classify observations as:
+
+**Correctness risk**
+
+A defect or credible failure mode that may produce incorrect behaviour, violate a contract, or conceal an operational problem.
+
+**Maintainability concern**
+
+A concrete problem that makes code meaningfully harder to understand, navigate, modify, or extend.
+
+**Convention deviation**
+
+A departure from Foundary's established coding conventions without sufficient evidence of a broader quality problem.
+
+**Contextual trade-off**
+
+A reasonable alternative design with meaningful advantages and disadvantages. Report only when the trade-off helps the user understand a significant decision.
+
+Do not elevate personal preferences into correctness claims.
+
+## Recommendations
+
+For each substantive finding:
+
+- Identify the affected code.
+- Describe the observed problem.
+- Explain its consequence.
+- Recommend a proportionate improvement.
+- State uncertainty where relevant.
+
+Prefer addressing the underlying cause over applying superficial changes.
+
+Recommendations may involve extracting, inlining, combining, moving, renaming, or leaving code unchanged.
+
+Do not recommend refactoring solely because a function is long, a file is large, or a familiar code smell is present.
+
+Do not propose new abstractions unless they solve a demonstrated problem.
 
 ## Output
 
-- A one- or two-sentence overall assessment.
-- Findings in the format above.
-- Out-of-scope or unverified concerns, one line each, if any.
+Start with a brief overall assessment.
 
-No substantive findings is a valid result. Say so plainly and stop; do not
-manufacture advice to fill the report. Keep the report proportional to what
-was found.
+For each substantive finding, provide:
 
-## Rules
+- **Location:** File, function, or relevant code region.
+- **Finding:** The specific issue.
+- **Impact:** Why it matters.
+- **Recommendation:** The smallest appropriate improvement, considering the project's constraints.
+- **Classification:** Correctness risk, maintainability concern, convention deviation, or contextual trade-off.
 
-- Do not modify code, stage, or commit unless the user expressly asks.
-- Do not apply numeric thresholds for function, file, or module size, nesting
-  depth, or parameter count.
-- Do not recommend refactorings automatically because a smell is present.
-- Do not prescribe language-specific syntax, formatting, or a paradigm.
-- Do not invent intent, callers, contracts, or risk; state what was not
-  inspected.
-- Do not recommend new layers, abstractions, or helpers unless a standard
-  shows they solve a present problem.
-- Do not require or produce code examples unless the user asks.
+Prioritise correctness and maintainability findings.
+
+Group minor convention deviations when appropriate.
+
+Report uncertainty rather than inventing evidence.
+
+If no meaningful issues are found, say so.
+
+## Boundaries
+
+- Critique is read-only unless the user separately requests implementation.
+- Do not modify, stage, commit, or push code.
+- Do not introduce a development workflow or implementation plan automatically.
+- Do not require a fixed number of findings.
+- Do not manufacture problems to justify a review.
+- Do not prescribe an architectural pattern without contextual justification.
+- Do not require arbitrary function, file, module, or parameter limits.
+- Do not treat established conventions as unquestionable when they are demonstrably harmful.
+- Do not produce unrelated recommendations.
+

@@ -17,6 +17,10 @@ Execute a supplied plan or strategy. The input is the contract; do not re-plan, 
 - Run the focused check for each step before moving on. Widen validation only as the plan or rubric allows.
 - No unrelated cleanup, formatting, renames, or refactors, even if useful. Note them for later instead.
 - Do not stage, commit, or push unless the user asks.
+- When Foundary Craft is available, apply its `craft` skill to all code written or modified during implementation.
+- Craft determines how authorised changes are expressed and organised. It does not override the approved plan, scope, contracts, or stop conditions.
+- Do not introduce unrelated refactoring to satisfy Craft. Report structural problems that require separate authorisation.
+- Ensure implementation subagents receive the applicable Craft guidance alongside their assigned task.
 
 ## Subagents
 
